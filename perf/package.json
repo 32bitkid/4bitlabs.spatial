@@ -12,7 +12,7 @@
   "author": "J. Holmes <32bitkid@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "@4bitlabs/ennetree": "^0.0.0",
-    "@4bitlabs/quadtree": "^0.0.0"
+    "@4bitlabs/ennetree": "*",
+    "@4bitlabs/quadtree": "*"
   }
 }
