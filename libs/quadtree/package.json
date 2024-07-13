@@ -1,0 +1,24 @@
+{
+  "name": "@4bitlabs/quadtree",
+  "version": "0.0.0",
+  "description": "A basic quadtree (2×2 spatial division) for fast, efficient spatial queries",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "clean": "tsc --build --clean",
+    "clean:wipe": "rimraf ./dist",
+    "build": "tsc --build",
+    "test": "jest src/",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "quadtree",
+    "spatial",
+    "spatial-query"
+  ],
+  "author": "J. Holmes <32bitkid@gmail.com>",
+  "license": "ISC",
+  "files": [
+    "./dist/**/*"
+  ]
+}

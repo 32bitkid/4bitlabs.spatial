@@ -1,0 +1,23 @@
+{
+  "targetDefaults": {
+    "clean": {
+      "dependsOn": []
+    },
+    "clean:wipe": {
+      "dependsOn": []
+    },
+    "build": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "test": {
+      "cache": true,
+      "dependsOn": ["^test"]
+    },
+    "perf": {
+      "cache": false,
+      "dependsOn": ["^build"]
+    }
+  }
+}

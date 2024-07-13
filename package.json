@@ -1,0 +1,43 @@
+{
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/32bitkid/4bitlabs.quadtree.git"
+  },
+  "author": "J. Holmes <32bitkid@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/32bitkid/4bitlabs.quadtree/issues"
+  },
+  "workspaces": [
+    "libs/*",
+    "perf"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "format:fix": "prettier -w .",
+    "build": "lerna run build",
+    "test": "lerna run test",
+    "clean": "lerna run clean",
+    "clean:wipe": "lerna run clean:wipe"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@eslint/js": "^9.6.0",
+    "@types/jest": "^29.5.12",
+    "conventional-changelog-eslint": "^6.0.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-deprecation": "^3.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "jest": "^29.7.0",
+    "lerna": "^8.1.6",
+    "prettier": "^3.3.2",
+    "rimraf": "^5.0.7",
+    "tinybench": "^2.8.0",
+    "ts-jest": "^29.1.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^7.15.0"
+  }
+}

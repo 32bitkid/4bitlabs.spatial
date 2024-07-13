@@ -1,0 +1,25 @@
+{
+  "name": "@4bitlabs/ennetree",
+  "version": "0.0.0",
+  "description": "A basic ennetree (3×3 spatial division) for fast, efficient spatial queries",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "clean": "tsc --build --clean",
+    "clean:wipe": "rimraf ./dist",
+    "build": "tsc --build",
+    "test": "jest src/",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "ennetree",
+    "spatial",
+    "spatial-query",
+    "quadtree"
+  ],
+  "author": "J. Holmes <32bitkid@gmail.com>",
+  "license": "ISC",
+  "files": [
+    "./dist/**/*"
+  ]
+}
