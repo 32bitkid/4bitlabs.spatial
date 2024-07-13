@@ -25,7 +25,7 @@
   "devDependencies": {
     "@eslint/js": "^9.6.0",
     "@types/jest": "^29.5.12",
-    "conventional-changelog-eslint": "^6.0.0",
+    "conventional-changelog-eslint": "^5.0.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-deprecation": "^3.0.0",
