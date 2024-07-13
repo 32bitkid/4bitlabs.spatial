@@ -6,7 +6,8 @@
   "ignoreChanges": ["**/*.md"],
   "command": {
     "version": {
-      "conventionalCommits": true
+      "conventionalCommits": true,
+      "private": false
     }
   }
 }
