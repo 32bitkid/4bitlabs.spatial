@@ -1,7 +1,7 @@
 {
   "name": "@4bitlabs/quadtree",
   "version": "0.0.0",
-  "description": "A basic quadtree (2×2 spatial division) for fast, efficient spatial queries",
+  "description": "A basic 2D quadtree (2×2 spatial division) for fast, efficient spatial queries",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
@@ -14,7 +14,8 @@
   "keywords": [
     "quadtree",
     "spatial",
-    "spatial-query"
+    "spatial-query",
+    "2d"
   ],
   "author": "J. Holmes <32bitkid@gmail.com>",
   "license": "ISC",
