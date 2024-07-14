@@ -1,0 +1,24 @@
+{
+  "name": "@4bitlabs/vector",
+  "version": "0.0.0",
+  "description": "A TypedArray-backed resizable vector data-structure",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "clean": "tsc --build --clean",
+    "clean:wipe": "rimraf ./dist",
+    "build": "tsc --build",
+    "test": "jest src/",
+    "prepack": "npm run build"
+  },
+  "keywords": [
+    "data structures",
+    "typedarray",
+    "vector"
+  ],
+  "author": "J. Holmes <32bitkid@gmail.com>",
+  "license": "ISC",
+  "files": [
+    "./dist/**/*"
+  ]
+}
