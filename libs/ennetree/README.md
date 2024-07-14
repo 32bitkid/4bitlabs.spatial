@@ -5,15 +5,15 @@
 ## Installing
 
 ```shell
-$ npm install --save @4bitlabs/quadtree
+$ npm install --save @4bitlabs/ennetree
 ```
 
 ```shell
-$ yarn add @4bitlabs/quadtree
+$ yarn add @4bitlabs/ennetree
 ```
 
 ```shell
-$ pnpm add @4bitlabs/quadtree
+$ pnpm add @4bitlabs/ennetree
 ```
 
 ## Usage
