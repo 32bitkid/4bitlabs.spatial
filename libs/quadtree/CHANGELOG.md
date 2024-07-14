@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/32bitkid/4bitlabs.spatial/compare/@4bitlabs/quadtree@1.0.0...@4bitlabs/quadtree@1.0.1) (2024-07-14)
+
+### Chore
+
+- fixing images in README ([f6c8432](https://github.com/32bitkid/4bitlabs.spatial/commit/f6c8432feabec7bed6e2f7d9ef94416d2cfffed2))
+
 # 1.0.0 (2024-07-13)
 
 ### Added
