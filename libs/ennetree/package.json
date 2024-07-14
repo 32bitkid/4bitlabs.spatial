@@ -9,7 +9,7 @@
     "clean:wipe": "rimraf ./dist",
     "build": "tsc --build",
     "test": "jest src/",
-    "prepare": "npm run build"
+    "prepack": "npm run build"
   },
   "keywords": [
     "ennetree",

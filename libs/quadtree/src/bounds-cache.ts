@@ -17,11 +17,11 @@ export class BoundsCache<T extends object> {
     return bounds;
   }
 
-  delete(item: T) {
+  delete(item: T): void {
     this.boundsCache.delete(item);
   }
 
-  clear() {
+  clear(): void {
     this.boundsCache = new WeakMap();
   }
 }

@@ -39,7 +39,7 @@ export class eTree<T extends object> {
 
   constructor(
     [x0, y0, x3, y3]: Readonly<Bounds>,
-    options: eTreeOptions = {},
+    options: eTreeOptions,
     boundsCache: BoundsCache<T>,
     quadCache: WeakMap<T, eTree<T>>,
     depth = 0,
@@ -74,7 +74,7 @@ export class eTree<T extends object> {
     this.items = new Set();
   }
 
-  clear() {
+  clear(): void {
     this.items.clear();
     for (let i = 0; i < 4; i++) {
       const child = this.children[i];
@@ -84,7 +84,7 @@ export class eTree<T extends object> {
     }
   }
 
-  insert(item: Readonly<T>) {
+  insert(item: Readonly<T>): void {
     if (!this.isSplit && this.items.size + 1 > this.maxChildren) {
       this.isSplit = true;
       for (const i of this.items)
@@ -195,7 +195,7 @@ export class eTree<T extends object> {
     }
   }
 
-  size() {
+  size(): number {
     let count = this.items.size;
     for (let i = 0; i < 9; i++) {
       const child = this.children[i];

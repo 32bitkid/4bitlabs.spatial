@@ -29,7 +29,7 @@ export class qTree<T extends object> {
 
   constructor(
     [x0, y0, x1, y1]: Readonly<Bounds>,
-    options: qTreeOptions = {},
+    options: qTreeOptions,
     boundsCache: BoundsCache<T>,
     quadCache: WeakMap<T, qTree<T>>,
     depth: number = 0,
@@ -54,7 +54,7 @@ export class qTree<T extends object> {
     this.items = new Set();
   }
 
-  clear() {
+  clear(): void {
     this.items.clear();
     for (let i = 0; i < 4; i++) {
       const child = this.children[i];
@@ -64,7 +64,7 @@ export class qTree<T extends object> {
     }
   }
 
-  insert(item: Readonly<T>) {
+  insert(item: Readonly<T>): void {
     if (!this.isSplit && this.items.size + 1 > this.maxChildren) {
       this.isSplit = true;
       for (const i of this.items)
@@ -170,7 +170,7 @@ export class qTree<T extends object> {
     }
   }
 
-  size() {
+  size(): number {
     let count = this.items.size;
     for (let i = 0; i < 4; i++) {
       const child = this.children[i];

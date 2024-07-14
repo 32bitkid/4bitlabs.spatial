@@ -9,7 +9,7 @@ export class LinearBaseline<T extends object> {
     this.boundsFn = boundsFn;
   }
 
-  insert(item: T) {
+  insert(item: T): void {
     this.items.add(item);
     this.bounds.set(item, this.boundsFn(item));
   }
@@ -23,7 +23,7 @@ export class LinearBaseline<T extends object> {
     return result;
   }
 
-  remove(item: T) {
+  remove(item: T): void {
     this.items.delete(item);
     this.bounds.delete(item);
   }
