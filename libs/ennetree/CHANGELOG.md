@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/32bitkid/4bitlabs.spatial/compare/@4bitlabs/ennetree@1.0.1...@4bitlabs/ennetree@1.0.2) (2024-07-14)
+
+### Chore
+
+- enable isolatedDeclarations ([eefd54e](https://github.com/32bitkid/4bitlabs.spatial/commit/eefd54eed57ccddf8d7757148a6c5abfb74e11ed))
+
 ## [1.0.1](https://github.com/32bitkid/4bitlabs.spatial/compare/@4bitlabs/ennetree@1.0.0...@4bitlabs/ennetree@1.0.1) (2024-07-14)
 
 ### Chore
