@@ -28,8 +28,8 @@ export class Vector<T extends TypedArray> {
     const { initialCapacity = 0, initialLength = 0 } =
       typeof options === 'number' ? { initialCapacity: options } : options;
     this.ArrayClass = ArrayClass;
-    this._length = initialLength;
-    this._capacity = Math.max(initialCapacity, initialLength);
+    this._length = Math.ceil(initialLength);
+    this._capacity = Math.ceil(Math.max(initialCapacity, this._length));
     this.array = new ArrayClass(this._capacity);
   }
 
