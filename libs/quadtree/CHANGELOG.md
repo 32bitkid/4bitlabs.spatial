@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4](https://github.com/32bitkid/4bitlabs.spatial/compare/@4bitlabs/quadtree@1.0.3...@4bitlabs/quadtree@1.0.4) (2024-07-15)
+
+### Added
+
+- export Quadtree interface ([94fe83b](https://github.com/32bitkid/4bitlabs.spatial/commit/94fe83ba5167408b7bc2bb4518d21e698b14ecb2))
+
+### Chore
+
+- add homepage/bugs/repository to package.json ([6de2208](https://github.com/32bitkid/4bitlabs.spatial/commit/6de220826a9a4425835b6031c90d694cce322f2f))
+
 ## [1.0.3](https://github.com/32bitkid/4bitlabs.spatial/compare/@4bitlabs/quadtree@1.0.2...@4bitlabs/quadtree@1.0.3) (2024-07-15)
 
 ### Changed
