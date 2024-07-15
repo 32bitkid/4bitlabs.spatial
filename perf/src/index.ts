@@ -37,8 +37,6 @@ async function runBench(count: number) {
     return [x, y, x + w, w + h];
   });
 
-  console.log();
-
   benchmark
     .add(`linear (${count.toLocaleString()})`, () => {
       windows.forEach((win) => linear.collect(win));
