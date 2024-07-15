@@ -138,6 +138,11 @@ export class Vector<T extends TypedArray> {
     return this;
   }
 
+  clear(): this {
+    this._length = 0;
+    return this;
+  }
+
   *values(): IterableIterator<number> {
     const len = this._length;
     for (let i = 0; i < len; i++) yield this.array[i];
