@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/32bitkid/4bitlabs.spatial/compare/@4bitlabs/ennetree@1.0.2...@4bitlabs/ennetree@1.0.3) (2024-07-15)
+
+### Changed
+
+- removing BoundsCache from eTree ([6df8b43](https://github.com/32bitkid/4bitlabs.spatial/commit/6df8b43590cb6ecf76b6b4ab4e54e76762613ade))
+
 ## [1.0.2](https://github.com/32bitkid/4bitlabs.spatial/compare/@4bitlabs/ennetree@1.0.1...@4bitlabs/ennetree@1.0.2) (2024-07-14)
 
 ### Chore

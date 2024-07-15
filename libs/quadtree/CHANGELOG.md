@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/32bitkid/4bitlabs.spatial/compare/@4bitlabs/quadtree@1.0.2...@4bitlabs/quadtree@1.0.3) (2024-07-15)
+
+### Changed
+
+- removing BoundsCache from qTree ([12f1c32](https://github.com/32bitkid/4bitlabs.spatial/commit/12f1c32842428ed15e386663cb32752b2eb17c4c))
+
 ## [1.0.2](https://github.com/32bitkid/4bitlabs.spatial/compare/@4bitlabs/quadtree@1.0.1...@4bitlabs/quadtree@1.0.2) (2024-07-14)
 
 ### Chore

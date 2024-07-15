@@ -1,6 +1,6 @@
 {
   "name": "@4bitlabs/vector",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A TypedArray-backed resizable vector data-structure",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
