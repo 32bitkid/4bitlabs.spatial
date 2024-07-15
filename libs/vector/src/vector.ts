@@ -9,7 +9,7 @@ export interface VectorOptions {
 
 export class Vector<T extends TypedArray> {
   private readonly ArrayClass: TypedArrayConstructor<T>;
-  private array: TypedArray;
+  private array: T;
   private _capacity: number;
   private _length: number;
 

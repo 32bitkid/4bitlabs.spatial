@@ -12,4 +12,6 @@ export type TypedArray =
 export interface TypedArrayConstructor<T extends TypedArray> {
   new (length: number | ArrayLike<number> | ArrayBufferLike): T;
   new (buffer: ArrayBufferLike, byteOffset?: number, length?: number): T;
+
+  readonly BYTES_PER_ELEMENT: number;
 }
