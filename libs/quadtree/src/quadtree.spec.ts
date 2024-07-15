@@ -1,5 +1,5 @@
 import { type Bounds } from './bounds';
-import { quadtree } from './quadtree';
+import { quadtree } from './factory';
 
 describe('quadtree', () => {
   it('should do something', () => {

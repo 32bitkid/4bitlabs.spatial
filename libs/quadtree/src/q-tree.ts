@@ -1,11 +1,12 @@
 import { Bounds, contains, overlaps } from './bounds';
+import { Quadtree } from './quadtree';
 
 export interface qTreeOptions {
   maxDepth?: number;
   maxChildren?: number;
 }
 
-export class qTree<T extends object> {
+export class qTree<T extends object> implements Quadtree<T> {
   private readonly depth: number;
   private readonly maxChildren: number;
   private readonly maxDepth: number;

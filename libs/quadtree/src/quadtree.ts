@@ -1,11 +1,13 @@
-import { type Bounds } from './bounds';
-import { qTree, type qTreeOptions } from './q-tree';
+import { Bounds } from './bounds';
 
-export function quadtree<T extends object>(
-  area: Readonly<Bounds>,
-  boundsFn: (it: T) => Bounds,
-  options: qTreeOptions = {},
-): qTree<T> {
-  const quadCache = new WeakMap<T, qTree<T>>();
-  return new qTree<T>(area, options, boundsFn, quadCache);
+export interface Quadtree<T> {
+  clear(): void;
+  insert(item: Readonly<T>): void;
+  remove(item: Readonly<T>): boolean;
+  size(): number;
+
+  all(): Generator<Readonly<T>, void, undefined>;
+  collect(area: Readonly<Bounds>, result?: Readonly<T>[]): Readonly<T>[];
+  collectAll(result?: Readonly<T>[]): Readonly<T>[];
+  search(area: Readonly<Bounds>): Generator<Readonly<T>, void, undefined>;
 }
