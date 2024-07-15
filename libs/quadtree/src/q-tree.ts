@@ -1,4 +1,3 @@
-import { BoundsCache } from './bounds-cache';
 import { Bounds, contains, overlaps } from './bounds';
 
 export interface qTreeOptions {
@@ -11,7 +10,7 @@ export class qTree<T extends object> {
   private readonly maxChildren: number;
   private readonly maxDepth: number;
   private readonly items: Set<T>;
-  private readonly boundsCache: BoundsCache<T>;
+  private readonly boundsFn: (item: T) => Bounds;
   private readonly quadCache: WeakMap<T, qTree<T>>;
   private readonly childAreas: [
     tl: Readonly<Bounds>,
@@ -30,14 +29,14 @@ export class qTree<T extends object> {
   constructor(
     [x0, y0, x1, y1]: Readonly<Bounds>,
     options: qTreeOptions,
-    boundsCache: BoundsCache<T>,
+    boundFn: (item: T) => Bounds,
     quadCache: WeakMap<T, qTree<T>>,
     depth: number = 0,
   ) {
     const { maxDepth = 7, maxChildren = 10 } = options;
     this.maxDepth = maxDepth;
     this.maxChildren = maxChildren;
-    this.boundsCache = boundsCache;
+    this.boundsFn = boundFn;
     this.quadCache = quadCache;
     this.depth = depth;
 
@@ -82,14 +81,14 @@ export class qTree<T extends object> {
   private tryChildInsert(item: Readonly<T>): boolean {
     for (let i = 0; i < 4; i++) {
       const childRect = this.childAreas[i];
-      const rect = this.boundsCache.get(item);
+      const rect = this.boundsFn(item);
       if (contains(childRect, rect)) {
         let child = this.children[i];
         if (!child) {
           this.children[i] = child = new qTree<T>(
             childRect,
             { maxDepth: this.maxDepth },
-            this.boundsCache,
+            this.boundsFn,
             this.quadCache,
             this.depth + 1,
           );
@@ -106,7 +105,6 @@ export class qTree<T extends object> {
     if (this.items.has(item)) {
       this.items.delete(item);
       this.quadCache.delete(item);
-      this.boundsCache.delete(item);
 
       // TODO handle cleanup
       return true;
@@ -129,7 +127,7 @@ export class qTree<T extends object> {
 
   collect(area: Readonly<Bounds>, result: Readonly<T>[] = []): Readonly<T>[] {
     for (const item of this.items) {
-      const rect = this.boundsCache.get(item);
+      const rect = this.boundsFn(item);
       if (overlaps(area, rect)) result.push(item);
     }
 
@@ -156,7 +154,7 @@ export class qTree<T extends object> {
 
   *search(area: Readonly<Bounds>): Generator<Readonly<T>, void, undefined> {
     for (const item of this.items) {
-      const rect = this.boundsCache.get(item);
+      const rect = this.boundsFn(item);
       if (overlaps(area, rect)) yield item;
     }
 
