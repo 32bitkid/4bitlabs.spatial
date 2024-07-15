@@ -1,11 +1,12 @@
 import { Bounds, contains, overlaps } from './bounds';
+import { Ennetree } from './ennetree';
 
 export interface eTreeOptions {
   maxDepth?: number;
   maxChildren?: number;
 }
 
-export class eTree<T extends object> {
+export class eTree<T extends object> implements Ennetree<T> {
   private readonly depth: number;
   private readonly maxChildren: number;
   private readonly maxDepth: number;

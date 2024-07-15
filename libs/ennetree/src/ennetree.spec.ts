@@ -1,5 +1,5 @@
 import { type Bounds } from './bounds';
-import { ennetree } from './ennetree';
+import { ennetree } from './factory';
 
 describe('nontree', () => {
   it('should do something', () => {

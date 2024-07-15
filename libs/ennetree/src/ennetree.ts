@@ -1,11 +1,13 @@
-import { type Bounds } from './bounds';
-import { eTree, type eTreeOptions } from './e-tree';
+import { Bounds } from './bounds';
 
-export function ennetree<T extends object>(
-  area: Readonly<Bounds>,
-  boundsFn: (it: T) => Bounds,
-  options: eTreeOptions = {},
-): eTree<T> {
-  const quadCache = new WeakMap<T, eTree<T>>();
-  return new eTree<T>(area, options, boundsFn, quadCache);
+export interface Ennetree<T> {
+  clear(): void;
+  insert(item: Readonly<T>): void;
+  remove(item: Readonly<T>): boolean;
+  size(): number;
+
+  all(): Generator<Readonly<T>, void, undefined>;
+  collect(area: Readonly<Bounds>, result?: Readonly<T>[]): Readonly<T>[];
+  collectAll(result?: Readonly<T>[]): Readonly<T>[];
+  search(area: Readonly<Bounds>): Generator<Readonly<T>, void, undefined>;
 }
