@@ -23,6 +23,13 @@ export class LinearBaseline<T extends object> {
     return result;
   }
 
+  *search(area: Bounds): IterableIterator<T> {
+    for (const item of this.items) {
+      const r = this.bounds.get(item) ?? this.boundsFn(item);
+      if (overlaps(area, r)) yield item;
+    }
+  }
+
   remove(item: T): void {
     this.items.delete(item);
     this.bounds.delete(item);
