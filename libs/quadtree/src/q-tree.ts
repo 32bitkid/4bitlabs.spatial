@@ -173,8 +173,7 @@ export class qTree<T extends object> implements Quadtree<T> {
     let count = this.items.size;
     for (let i = 0; i < 4; i++) {
       const child = this.children[i];
-      if (!child) continue;
-      count += child.size();
+      if (child) count += child.size();
     }
     return count;
   }
