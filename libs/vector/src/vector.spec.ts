@@ -204,4 +204,11 @@ describe('Vector', () => {
     vec.copy(2, dest);
     expect(dest).toStrictEqual(Uint8Array.of(2, 3, 4));
   });
+
+  it('should be clearable', () => {
+    const vec = Vector.from([1, 2, 3, 4], Float64Array);
+    expect(vec.pop()).toBe(4);
+    vec.clear();
+    expect(vec.length).toBe(0);
+  });
 });
