@@ -138,7 +138,10 @@ export class qTree<T extends object> implements Quadtree<T> {
 
       const childArea = this.childAreas[i];
       if (contains(area, childArea)) child.collectAll(result);
-      else if (overlaps(area, childArea)) child.collect(area, result);
+      else if (overlaps(area, childArea)) {
+        child.collect(area, result);
+        if (contains(childArea, area)) break;
+      }
     }
 
     return result;
@@ -165,7 +168,10 @@ export class qTree<T extends object> implements Quadtree<T> {
 
       const childArea = this.childAreas[i];
       if (contains(area, childArea)) yield* child.all();
-      else if (overlaps(area, childArea)) yield* child.search(area);
+      else if (overlaps(area, childArea)) {
+        yield* child.search(area);
+        if (contains(childArea, area)) break;
+      }
     }
   }
 
