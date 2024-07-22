@@ -21,7 +21,6 @@
     "clean": "lerna run clean",
     "clean:wipe": "lerna run clean:wipe"
   },
-  "dependencies": {},
   "devDependencies": {
     "@eslint/js": "^9.7.0",
     "@types/jest": "^29.5.12",
@@ -37,6 +36,9 @@
     "tinybench": "^2.8.0",
     "ts-jest": "^29.2.3",
     "ts-node": "^10.9.2",
+    "typedoc": "^0.26.5",
+    "typedoc-plugin-mdn-links": "^3.2.5",
+    "typedoc-plugin-missing-exports": "^3.0.0",
     "typescript": "^5.5.3",
     "typescript-eslint": "^7.16.1"
   }
