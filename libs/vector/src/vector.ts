@@ -2,14 +2,19 @@ import { TypedArray, TypedArrayConstructor } from './typed-array';
 import { isTypedArray } from './is-typed-array';
 import { isIterable } from './is-iterable';
 
+const DEFAULT_GROWTH_FN = (current: number) => Math.ceil(current * 1.5);
+
 export interface VectorOptions {
   initialCapacity?: number;
   initialLength?: number;
+  growthFn?: (current: number) => number;
 }
 
 export class Vector<T extends TypedArray> {
   private readonly ArrayClass: TypedArrayConstructor<T>;
-  private array: T;
+  private readonly growthFn: (current: number) => number;
+
+  private _array: T;
   private _capacity: number;
   private _length: number;
 
@@ -25,12 +30,13 @@ export class Vector<T extends TypedArray> {
     ArrayClass: TypedArrayConstructor<T>,
     options: VectorOptions | number = {},
   ) {
-    const { initialCapacity = 0, initialLength = 0 } =
+    const { initialCapacity = 0, initialLength = 0, growthFn = DEFAULT_GROWTH_FN } =
       typeof options === 'number' ? { initialCapacity: options } : options;
     this.ArrayClass = ArrayClass;
+    this.growthFn = growthFn;
     this._length = Math.ceil(initialLength);
     this._capacity = Math.ceil(Math.max(initialCapacity, this._length));
-    this.array = new ArrayClass(this._capacity);
+    this._array = new ArrayClass(this._capacity);
   }
 
   static from<T extends TypedArray>(
@@ -57,18 +63,18 @@ export class Vector<T extends TypedArray> {
 
   set(index: number, value: number): void {
     if (index > this._length) return;
-    this.array[index] = value;
+    this._array[index] = value;
   }
 
   get(index: number): number | undefined {
     if (index > this._length) return undefined;
-    return this.array[index];
+    return this._array[index];
   }
 
   setN(start: number, values: ArrayLike<number>): void {
     if (start + values.length > this._length)
       throw this.#error('setN', 'out of bounds');
-    this.array.set(values, start);
+    this._array.set(values, start);
   }
 
   copy(index: number, countOrDest: number | T): T {
@@ -82,47 +88,47 @@ export class Vector<T extends TypedArray> {
 
   subarray(start: number = 0, end: number = this._length): T {
     if (end > this._length) throw this.#error('subarray', 'out of bounds');
-    return this.array.subarray(start, end) as T;
+    return this._array.subarray(start, end) as T;
   }
 
   mustSet(index: number, value: number): void {
     if (index > this._length || index < 0)
       throw this.#error('mustSet', 'out of bounds');
-    this.array[index] = value;
+    this._array[index] = value;
   }
 
   mustGet(index: number): number | undefined {
     if (index > this._length || index < 0)
       throw this.#error('mustGet', 'out of bounds');
-    return this.array[index];
+    return this._array[index];
   }
 
   push(value: number): number {
     if (this._capacity === this._length) this.grow();
-    this.array[this._length++] = value;
+    this._array[this._length++] = value;
     return this._length;
   }
 
   pushN(values: ArrayLike<number>): void {
     while (this._length + values.length > this._capacity) this.grow();
-    this.array.set(values, this._length);
+    this._array.set(values, this._length);
     this._length += values.length;
   }
 
   pop(): number | undefined {
     if (this._length === 0) return undefined;
-    return this.array[--this._length];
+    return this._array[--this._length];
   }
 
   popN(count: number, dest: T = new this.ArrayClass(count)): T {
     if (this._length < count) throw this.#error('popN', 'out of bounds');
-    dest.set(this.array.subarray(this._length - count, this._length));
+    dest.set(this._array.subarray(this._length - count, this._length));
     this._length -= count;
     return dest;
   }
 
   grow(): this {
-    const capacity = Math.max(Math.ceil(this._capacity * 1.5), 1);
+    const capacity = Math.max(this.growthFn(this._capacity), 1);
     this.reallocate(capacity);
     return this;
   }
@@ -131,10 +137,10 @@ export class Vector<T extends TypedArray> {
     if (this._capacity === capacity) return this;
 
     const array = new this.ArrayClass(capacity);
-    array.set(this.array, 0);
+    array.set(this._array, 0);
     this._capacity = capacity;
     this._length = Math.min(this.length, capacity);
-    this.array = array;
+    this._array = array;
     return this;
   }
 
@@ -145,12 +151,12 @@ export class Vector<T extends TypedArray> {
 
   *values(): IterableIterator<number> {
     const len = this._length;
-    for (let i = 0; i < len; i++) yield this.array[i];
+    for (let i = 0; i < len; i++) yield this._array[i];
   }
 
   *entries(): IterableIterator<[number, number]> {
     const len = this._length;
-    for (let i = 0; i < len; i++) yield [i, this.array[i]];
+    for (let i = 0; i < len; i++) yield [i, this._array[i]];
   }
 
   *consume(): IterableIterator<number> {
