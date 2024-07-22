@@ -62,12 +62,14 @@ export class Vector<T extends TypedArray> {
   }
 
   set(index: number, value: number): void {
-    if (index > this._length) return;
+    if (index > this._length || index < 0)
+      throw this.#error('mustSet', 'out of bounds');
     this._array[index] = value;
   }
 
-  get(index: number): number | undefined {
-    if (index > this._length) return undefined;
+  get(index: number): number {
+    if (index > this._length || index < 0)
+      throw this.#error('mustGet', 'out of bounds');
     return this._array[index];
   }
 
@@ -89,18 +91,6 @@ export class Vector<T extends TypedArray> {
   subarray(start: number = 0, end: number = this._length): T {
     if (end > this._length) throw this.#error('subarray', 'out of bounds');
     return this._array.subarray(start, end) as T;
-  }
-
-  mustSet(index: number, value: number): void {
-    if (index > this._length || index < 0)
-      throw this.#error('mustSet', 'out of bounds');
-    this._array[index] = value;
-  }
-
-  mustGet(index: number): number | undefined {
-    if (index > this._length || index < 0)
-      throw this.#error('mustGet', 'out of bounds');
-    return this._array[index];
   }
 
   push(value: number): number {
@@ -136,10 +126,11 @@ export class Vector<T extends TypedArray> {
   reallocate(capacity: number = this._length): this {
     if (this._capacity === capacity) return this;
 
-    const array = new this.ArrayClass(capacity);
-    array.set(this._array, 0);
+    const newLength = Math.min(this.length, capacity);
+    const array = new this.Type(capacity);
+    array.set(this._array.subarray(0, newLength), 0);
     this._capacity = capacity;
-    this._length = Math.min(this.length, capacity);
+    this._length = newLength;
     this._array = array;
     return this;
   }

@@ -1,3 +1,6 @@
+/**
+ * All the available TypedArray types, see {@link !TypedArray | MDN documentation} for more details.
+ */
 export type TypedArray =
   | Int8Array
   | Uint8Array
@@ -9,9 +12,9 @@ export type TypedArray =
   | Float32Array
   | Float64Array;
 
+/**
+ * A constructor of a {@link !TypedArray} class.
+ */
 export interface TypedArrayConstructor<T extends TypedArray> {
   new (length: number | ArrayLike<number> | ArrayBufferLike): T;
-  new (buffer: ArrayBufferLike, byteOffset?: number, length?: number): T;
-
-  readonly BYTES_PER_ELEMENT: number;
 }

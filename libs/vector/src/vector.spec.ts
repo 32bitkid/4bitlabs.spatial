@@ -14,22 +14,19 @@ describe('Vector', () => {
     expect(vec.get(10)).toBe(42);
   });
 
-  it('should return undefined on out-of-bounds', () => {
-    const vec = new Vector(Uint8Array, 5);
-    expect(vec.get(10)).toBe(undefined);
-    expect(() => vec.set(10, 42)).not.toThrow();
-  });
-
-  it('should throw on out-of-bounds when using mustGet and mustSet', () => {
+  it('should throw on out-of-bounds when using get() and set()', () => {
     const vec = new Vector(Uint8Array, {
       initialCapacity: 10,
       initialLength: 5,
     });
-    expect(() => vec.mustGet(5)).not.toThrow('out of bounds');
-    expect(() => vec.mustSet(5, 42)).not.toThrow('out of bounds');
+    expect(() => vec.get(5)).not.toThrow('out of bounds');
+    expect(() => vec.set(5, 42)).not.toThrow('out of bounds');
 
-    expect(() => vec.mustGet(10)).toThrow('out of bounds');
-    expect(() => vec.mustSet(10, 42)).toThrow('out of bounds');
+    expect(() => vec.get(10)).toThrow('out of bounds');
+    expect(() => vec.set(10, 42)).toThrow('out of bounds');
+
+    expect(() => vec.get(-5)).toThrow('out of bounds');
+    expect(() => vec.set(-5, 42)).toThrow('out of bounds');
   });
 
   it('should push values', () => {
@@ -210,5 +207,23 @@ describe('Vector', () => {
     expect(vec.pop()).toBe(4);
     vec.clear();
     expect(vec.length).toBe(0);
+  });
+
+  describe('reallocation', () => {
+    it('should grow to some arbitrary new capacity', () => {
+      const vec = Vector.from([1, 2, 3, 4], Float64Array);
+      vec.reallocate(100);
+      expect(vec.length).toBe(4);
+      expect(vec.capacity).toBe(100);
+      expect(vec.copy(0, 4)).toStrictEqual(Float64Array.of(1, 2, 3, 4));
+    });
+
+    it('should truncate if the new capacity is less than the current length', () => {
+      const vec = Vector.from([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], Float64Array);
+      vec.reallocate(5);
+      expect(vec.length).toBe(5);
+      expect(vec.capacity).toBe(5);
+      expect(vec.copy(0, 5)).toStrictEqual(Float64Array.of(0, 1, 2, 3, 4));
+    });
   });
 });
