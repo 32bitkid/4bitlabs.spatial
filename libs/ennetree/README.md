@@ -1,6 +1,6 @@
 # `@4bitlabs/ennetree` [![License][license]][npm] [![NPM Version][version]][npm] [![NPM Downloads][dl]][npm]
 
-![Ennetree split illustration](../../docs/public/ennetree-split.png)
+![Ennetree split illustration](/docs/public/ennetree-split.png)
 
 ## Installing
 

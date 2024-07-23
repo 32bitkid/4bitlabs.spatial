@@ -2,12 +2,12 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/32bitkid/4bitlabs.quadtree.git"
+    "url": "git+https://github.com/32bitkid/4bitlabs.spatial.git"
   },
   "author": "J. Holmes <32bitkid@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/32bitkid/4bitlabs.quadtree/issues"
+    "url": "https://github.com/32bitkid/4bitlabs.spatial/issues"
   },
   "workspaces": [
     "libs/*",

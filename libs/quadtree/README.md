@@ -1,6 +1,6 @@
 # `@4bitlabs/quadtree` [![License][license]][npm] [![NPM Version][version]][npm] [![NPM Downloads][dl]][npm]
 
-![Quadtree split illustration](../../docs/public/quadtree-split.png)
+![Quadtree split illustration](/docs/public/quadtree-split.png)
 
 ## Installing
 

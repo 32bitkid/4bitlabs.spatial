@@ -6,7 +6,10 @@
   "types": "./dist/index.d.ts",
   "homepage": "https://github.com/32bitkid/4bitlabs.spatial/tree/main/libs/quadtree",
   "bugs": "https://github.com/32bitkid/4bitlabs.spatial/issues",
-  "repository": "github:32bitkid/4bitlabs.spatial",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/32bitkid/4bitlabs.spatial.git"
+  },
   "scripts": {
     "clean": "tsc --build --clean",
     "clean:wipe": "rimraf ./dist",
