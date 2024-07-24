@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/32bitkid/4bitlabs.spatial/compare/@4bitlabs/quadtree@1.0.4...@4bitlabs/quadtree@1.0.5) (2024-07-24)
+
+### Chore
+
+- Fixing github refs in package.json ([b188cf7](https://github.com/32bitkid/4bitlabs.spatial/commit/b188cf75bbf46d32a2bc00e6f8ab9f7bcb571c37))
+
+### Fixed
+
+- optimize for when childArea completely contains the search area. ([ac51c68](https://github.com/32bitkid/4bitlabs.spatial/commit/ac51c68890bbd5ea27463901c6fabf4c4a983b71))
+
+### Update
+
+- simplify count implementation to avoid continue usage ([1e7fde1](https://github.com/32bitkid/4bitlabs.spatial/commit/1e7fde19ec5de875f1b5aa822a3053eea38e5783))
+
 ## [1.0.4](https://github.com/32bitkid/4bitlabs.spatial/compare/@4bitlabs/quadtree@1.0.3...@4bitlabs/quadtree@1.0.4) (2024-07-15)
 
 ### Added
