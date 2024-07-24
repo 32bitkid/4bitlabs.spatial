@@ -232,11 +232,13 @@ export class Vector<T extends TypedArray> {
   /**
    * Push a single element onto the end of the {@link Vector}, resizing if needed.
    *
-   * @param value
+   * @param args The values to push to the end of the vector.
+   * @returns The new length of the vector.
    */
-  push(value: number): number {
-    if (this._capacity === this._length) this.grow();
-    this._array[this._length++] = value;
+  push(...args: number[]): number {
+    while (this._length + args.length > this._capacity) this.grow();
+    this._array.set(args, this._length);
+    this._length += args.length;
     return this._length;
   }
 
