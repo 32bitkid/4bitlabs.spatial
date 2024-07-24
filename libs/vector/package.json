@@ -21,7 +21,8 @@
   "keywords": [
     "data structures",
     "typedarray",
-    "vector"
+    "vector",
+    "bigint"
   ],
   "author": "J. Holmes <32bitkid@gmail.com>",
   "license": "ISC",
