@@ -1,5 +1,5 @@
 /**
- * All the available TypedArray types, see {@link !TypedArray | MDN documentation} for more details.
+ * All the available TypedArray types, see {@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/TypedArray | MDN documentation} for more details.
  */
 export type TypedArray =
   | Int8Array
@@ -13,8 +13,8 @@ export type TypedArray =
   | Float64Array;
 
 /**
- * A constructor of a {@link !TypedArray} class.
+ * A constructor of a {@link TypedArray} class.
  */
 export interface TypedArrayConstructor<T extends TypedArray> {
-  new (length: number | ArrayLike<number> | ArrayBufferLike): T;
+  new (length?: number): T;
 }

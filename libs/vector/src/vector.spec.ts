@@ -135,55 +135,22 @@ describe('Vector', () => {
     ).toThrow('source is not a valid type');
   });
 
-  it('should iterate items', () => {
-    const source = Array.from({ length: 32 }, (_, i) => i);
-    const vec = Vector.from(source, Float64Array);
-
-    let expected = 0;
-    for (const value of vec.values()) expect(value).toBe(expected++);
-    expect(vec.length).toBe(32);
-  });
-
-  it('should iterate entries', () => {
-    const source = Array.from({ length: 32 }, (_, i) => i);
-    const vec = Vector.from(source, Float64Array);
-
-    let i = 0;
-    for (const [idx, value] of vec.entries()) {
-      expect(idx).toBe(idx);
-      expect(value).toBe(source[i]);
-      i++;
-    }
-    expect(vec.length).toBe(32);
-  });
-
   it('should be consumable', () => {
     const source = Array.from({ length: 32 }, (_, i) => i);
     const vec = Vector.from(source, Float64Array);
 
     let expected = 32;
-    for (const value of vec.consume()) expect(value).toBe(--expected);
+    for (const value of vec.consume()) {
+      expect(value).toBe(--expected);
+    }
     expect(vec.length).toBe(0);
-  });
-
-  it('should be subarray-able', () => {
-    const vec = new Vector(Float64Array, 128);
-    vec.pushN([0, 0, 100, 100]);
-    vec.pushN([500, 500, 75, 25]);
-    vec.pushN([200, 200, 93, 10]);
-    vec.pushN([950, 950, 50, 50]);
-
-    expect(vec.subarray(0, 4)).toStrictEqual(Float64Array.of(0, 0, 100, 100));
-    expect(vec.subarray(12, 16)).toStrictEqual(
-      Float64Array.of(950, 950, 50, 50),
-    );
   });
 
   it('should allow setting multiple values at once', () => {
     const source = Array.from({ length: 8 }, (_, i) => i);
     const vec = Vector.from(source, Uint8ClampedArray);
     vec.setN(2, [255, 254, 253, 252]);
-    expect([...vec.values()]).toStrictEqual([0, 1, 255, 254, 253, 252, 6, 7]);
+    expect([...vec.consume()]).toStrictEqual([7, 6, 252, 253, 254, 255, 1, 0]);
   });
 
   it('should let you copy multiple values', () => {

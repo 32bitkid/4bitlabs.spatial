@@ -1,50 +1,49 @@
 import { TypedArray, TypedArrayConstructor } from './typed-array';
+import {
+  DEFAULT_GROWTH_FN,
+  VectorOptions,
+  VectorFromOptions,
+} from './vector-options';
 import { isTypedArray } from './is-typed-array';
 import { isIterable } from './is-iterable';
 
-const DEFAULT_GROWTH_FN = (current: number) => Math.ceil(current * 1.5);
-
 /**
- * The advanced options that can be used to control the construction of a {@link Vector}
- */
-export interface VectorOptions {
-  /**
-   * The initial capacity of the {@link Vector}.
-   *
-   * @defaultValue `0`, unless {@link VectorOptions.initialLength | initialLength} is greater.
-   */
-  initialCapacity?: number;
-  /**
-   * The initial length of the {@link Vector}. The initial values are initialized to `0`.
-   *
-   * @defaultValue `0`
-   */
-  initialLength?: number;
-  /**
-   * This method is called when the Vector needs to be resized to determine how much more memory should be allocated.
-   * The default behavior is to grow by a rate of _1.5_.
-   *
-   * @defaultValue `(current: number) => Math.ceil(current * 1.5)`
-   */
-  growthFn?: (current: number) => number;
-}
-
-/**
- * The {@link Vector} is a resizable data-structure that is backed by a {@link !TypedArray}. Unlike a {@link !TypedArray}, which
- * are constructed with a _fixed_ size, and JavaScript's built-in {@link !Array} type, which are dynamically sized but are not
- * as memory-efficient, the {@link Vector} strikes a balance between those two. However, this added
- * functionality doesn't come without cost. The {@link Vector} can be outperformed by either a {@link !TypedArray} or
- * traditional a JavaScript {@link !Array}, depending on the use-case. However, there are cases where using a
- * {@link Vector} is preferable.
+ * The {@link Vector} is a resizable data-structure that is backed by a {@link TypedArray}. Unlike a
+ * {@link TypedArray}&mdash;which are constructed with a _fixed_ size&mdash;and JavaScript's built-in {@link !Array}
+ * type&mdash;which are dynamically sized but are not as memory-efficient&mdash;the {@link Vector} strikes a balance
+ * between those two. However, this added functionality doesn't come without cost; depending on the use-case, the
+ * {@link Vector} _can_ be outperformed by either a {@link TypedArray} or traditional a JavaScript {@link !Array}.
+ * However, there are cases where using a {@link Vector} is preferable.
  *
- * @example
- * Create an empty Vector of 64-bit floating point numbers and add some numbers:
+ * @example A 64-bit floating point vector.
  *
  * ```ts
  * const vec = new Vector(Float64Array);
- * vec.push(1/3);
- * vec.push(2/3);
- * vec.push(1);
+ * ```
+ *
+ * Then, you can {@link push | `push()`} and {@link pop | `pop()`} entries from the {@link Vector}.
+ *
+ * ```ts
+ * vec.push(1/5);
+ * vec.push(2/5);
+ * vec.push(3/5);
+ *
+ * let top = vec.pop();
+ * console.log(top); // 0.6
+ * ```
+ *
+ * @example Using other TypedArray types
+ *
+ * You can use any of the {@link TypedArray} types for the backing store of the {@link Vector}:
+ *
+ * ```ts
+ * const octetVector = new Vector(Uint8Array, 128);
+ * const clamedOctetVector = new Vector(Uint8ClampedArray, 128);
+ * const shortVector = new Vector(Int16Array, 128);
+ * const ushortVector = new Vector(Uint16Array, 128);
+ * const longVector = new Vector(Int32Array, 128);
+ * const ulongVector = new Vector(Uint32Array, 128);
+ * const float32Vector = new Vector(Float32Array, 128);
  * ```
  */
 export class Vector<T extends TypedArray> {
@@ -56,7 +55,7 @@ export class Vector<T extends TypedArray> {
   private _length: number;
 
   /**
-   * Current the current length of the backing {@link !TypedArray}. This is the maximum number of elements this
+   * Current the current length of the backing {@link TypedArray}. This is the maximum number of elements this
    * {@link Vector} can hold before it will be resized.
    */
   get capacity(): number {
@@ -73,20 +72,14 @@ export class Vector<T extends TypedArray> {
   /**
    * Create an empty {@link Vector} with a given capacity, the default is `0`.
    *
-   * @param Type The constructor of the underlying backing {@link !TypedArray} type.
-   * @param initialCapacity The initial capacity of the vector. Defaults to `0`.
-   *
-   * @example
-   * For instance, to create a `Vector` that holds bytes, with an initial capacity of `16`:
-   * ```ts
-   * const vec = new Vector(Uint8Array, 16);
-   * ```
+   * @param Type The constructor of the underlying backing {@link TypedArray} type.
+   * @param initialCapacity The initial capacity of the {@link Vector}. Defaults to `0`.
    */
   constructor(Type: TypedArrayConstructor<T>, initialCapacity?: number);
   /**
    * You can also customize more options, by using {@link VectorOptions} in the second argument.
    *
-   * @param Type The constructor of the underlying backing {@link !TypedArray} type.
+   * @param Type The constructor of the underlying backing {@link TypedArray} type.
    * @param options Initial options
    *
    * @example
@@ -101,15 +94,11 @@ export class Vector<T extends TypedArray> {
    * );
    * ```
    *
-   * @example Changing the default growth behavior.
-   *
+   * @example Defining the growth behavior, allocating in chunks of 100 elements at a time.
    * ```ts
    * const vec = new Vector(
    *   Uint32Array,
-   *   {
-   *     initialCapacity: 500,
-   *     growthFn: (current) => current + 100,
-   *   },
+   *   { growthFn: (prev) => prev + 100 },
    * );
    * ```
    */
@@ -130,21 +119,49 @@ export class Vector<T extends TypedArray> {
     this._array = new Type(this._capacity);
   }
 
+  /**
+   * Create a {@link Vector} from an existing {@link !Array} or {@link !Iterable}
+   *
+   * @param source The source {@link !Array} or {@link !Iterable} of {@link !Number}s
+   * @param ArrayType The constructor of the underlying backing {@link TypedArray} type.
+   * @param initialCapacity The initial capacity of the constructed {@link Vector}
+   */
   static from<T extends TypedArray>(
     source: ArrayLike<number> | Iterable<number>,
     ArrayType: TypedArrayConstructor<T>,
     initialCapacity?: number,
+  ): Vector<T>;
+  /**
+   * Create a {@link Vector} from an existing {@link !Array} or {@link !Iterable}
+   *
+   * @param source The source {@link !Array} or {@link !Iterable} of {@link !Number}s
+   * @param ArrayType he constructor of the underlying backing {@link TypedArray} type.
+   * @param options he options of constructed {@link Vector}
+   */
+  static from<T extends TypedArray>(
+    source: ArrayLike<number> | Iterable<number>,
+    ArrayType: TypedArrayConstructor<T>,
+    options: VectorFromOptions,
+  ): Vector<T>;
+  static from<T extends TypedArray>(
+    source: ArrayLike<number> | Iterable<number>,
+    ArrayType: TypedArrayConstructor<T>,
+    _options: VectorFromOptions | number = {},
   ): Vector<T> {
+    const options =
+      typeof _options === 'number' ? { initialCapacity: _options } : _options;
+
     if (Array.isArray(source) || isTypedArray(source)) {
       const vec = new Vector<T>(ArrayType, {
-        initialCapacity: initialCapacity ?? source.length,
+        ...options,
+        initialCapacity: options.initialCapacity ?? source.length,
       });
       vec.pushN(source);
       return vec;
     }
 
     if (isIterable(source)) {
-      const vec = new Vector<T>(ArrayType, { initialCapacity });
+      const vec = new Vector<T>(ArrayType, options);
       for (const val of source) vec.push(val);
       return vec;
     }
@@ -202,7 +219,7 @@ export class Vector<T extends TypedArray> {
   }
 
   /**
-   * @hidden Get a subarray of the underlying backing {@link !TypedArray}.
+   * @hidden Get a subarray of the underlying backing {@link TypedArray}.
    * This can be _dangerous_ when mutating the Vector, which may cause
    * the {@link Vector} to be resized, causing the subarray reference to
    * possibly be invalid.
@@ -248,7 +265,7 @@ export class Vector<T extends TypedArray> {
    * Remove and return a multiple elements from the end of the {@link Vector}.
    *
    * @param count
-   * @returns A {@link !TypedArray} of the removed values.
+   * @returns A {@link TypedArray} of the removed values.
    *
    * @example
    * const vec = Vector.from([1, 2, 3, 4, 5], Uint8Array);
@@ -273,7 +290,7 @@ export class Vector<T extends TypedArray> {
   }
 
   /**
-   * Reallocate the underlying {@link !TypedArray}.
+   * Reallocate the underlying {@link TypedArray}.
    *
    * If the capacity is _less-than_ the current length, then the extra values are discarded.
    *
@@ -298,21 +315,23 @@ export class Vector<T extends TypedArray> {
     return this;
   }
 
-  *values(): IterableIterator<number> {
-    const len = this._length;
-    for (let i = 0; i < len; i++) yield this._array[i];
-  }
-
-  *entries(): IterableIterator<[number, number]> {
-    const len = this._length;
-    for (let i = 0; i < len; i++) yield [i, this._array[i]];
-  }
-
+  /**
+   * Iterate through the vector from the tail-end, consuming each entry. Essentially, the same as
+   * running {@link Vector.pop} in a loop until {@link Vector.length} is zero.
+   *
+   * @example
+   * ```ts
+   * const vec = Vector.from([1, 2, 3], Uint8Array);
+   * for (const value of vec.consume()) {
+   *   console.log(value); // 3, 2, 1
+   * }
+   *
+   * console.log(vec.length); // 0.
+   * ```
+   */
   *consume(): IterableIterator<number> {
     while (this._length > 0) {
-      const value = this.pop();
-      if (value === undefined) break;
-      yield value;
+      yield this._array[--this._length];
     }
   }
 

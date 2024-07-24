@@ -1,7 +1,7 @@
 {
   "name": "@4bitlabs/vector",
   "version": "0.1.2",
-  "description": "A TypedArray-backed resizable vector data-structure",
+  "description": "A simple, TypedArray-backed resizable vector data-structure",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "homepage": "https://github.com/32bitkid/4bitlabs.spatial/tree/main/libs/vector",
@@ -15,7 +15,7 @@
     "clean:wipe": "rimraf ./dist",
     "build": "tsc --build",
     "test": "jest src/",
-    "docs": "typedoc --options ../../typedoc.json  --out ../../docs/vector ./src/index.ts",
+    "docs": "typedoc --options ./typedoc.json",
     "prepack": "npm run build"
   },
   "keywords": [

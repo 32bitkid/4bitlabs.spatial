@@ -1,14 +1,22 @@
 # `@4bitlabs/vector`
 
+A simple, TypedArray-backed resizable vector data-structure.
+
 ## Installing
+
+Using npm:
 
 ```shell
 $ npm install --save @4bitlabs/vector
 ```
 
+Using yarn:
+
 ```shell
 $ yarn add @4bitlabs/vector
 ```
+
+Using pnpm:
 
 ```shell
 $ pnpm add @4bitlabs/vector
