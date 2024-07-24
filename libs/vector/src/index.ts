@@ -9,6 +9,9 @@
 export type {
   TypedArray,
   TypedArrayConstructor,
+  BigTypedArray,
+  BigTypedArrayConstructor,
 } from './typed-array';
 export type { VectorOptions, VectorFromOptions } from './vector-options';
 export { Vector } from './vector';
+export { BigVector } from './big-vector';

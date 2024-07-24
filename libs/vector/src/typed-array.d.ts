@@ -18,3 +18,15 @@ export type TypedArray =
 export interface TypedArrayConstructor<T extends TypedArray> {
   new (length?: number): T;
 }
+
+/**
+ * {@link !BigInt} typed-arrays, see {@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/TypedArray | MDN documentation} for more details.
+ */
+export type BigTypedArray = BigInt64Array | BigUint64Array;
+
+/**
+ * A constructor of a {@link TypedArray} class.
+ */
+export interface BigTypedArrayConstructor<T extends BigTypedArray> {
+  new (length?: number): T;
+}

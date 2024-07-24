@@ -37,3 +37,12 @@ const bytes = new Vector(Uint8ClampedArray, { initialCapacity: 255 });
 bytes.push(0x10);
 console.log(bytes.pop());
 ```
+
+Also included is `BigVector` for usage with `int64` and `uint64` sized integers:
+
+```ts
+import { BigVector } from '@4bitlabs/vector/dist';
+
+const uint64s = new BigVector(BigUint64Array);
+uint64s.push(0xffff_ffff_ffff_ffffn);
+```

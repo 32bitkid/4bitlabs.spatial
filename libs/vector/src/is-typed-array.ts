@@ -1,4 +1,4 @@
-import { TypedArray } from './typed-array';
+import { BigTypedArray, TypedArray } from './typed-array';
 
 export function isTypedArray(it: unknown): it is TypedArray {
   if (typeof it !== 'object') return false;
@@ -14,4 +14,10 @@ export function isTypedArray(it: unknown): it is TypedArray {
     it instanceof Float32Array ||
     it instanceof Float64Array
   );
+}
+
+export function isBigTypedArray(it: unknown): it is BigTypedArray {
+  if (typeof it !== 'object') return false;
+  if (it === null) return false;
+  return it instanceof BigInt64Array || it instanceof BigUint64Array;
 }

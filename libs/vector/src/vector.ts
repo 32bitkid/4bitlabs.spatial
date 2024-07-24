@@ -178,7 +178,7 @@ export class Vector<T extends TypedArray> {
    */
   set(index: number, value: number): void {
     if (index > this._length || index < 0)
-      throw this.#error('mustSet', 'out of bounds');
+      throw this.#error('set', 'out of bounds');
     this._array[index] = value;
   }
 
@@ -190,7 +190,7 @@ export class Vector<T extends TypedArray> {
    */
   get(index: number): number {
     if (index > this._length || index < 0)
-      throw this.#error('mustGet', 'out of bounds');
+      throw this.#error('get', 'out of bounds');
     return this._array[index];
   }
 

@@ -171,7 +171,7 @@ describe('Vector', () => {
 
   it('should be clearable', () => {
     const vec = Vector.from([1, 2, 3, 4], Float64Array);
-    expect(vec.pop()).toBe(4);
+    expect(vec.length).toBe(4);
     vec.clear();
     expect(vec.length).toBe(0);
   });
