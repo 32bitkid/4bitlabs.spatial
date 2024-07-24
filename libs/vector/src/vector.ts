@@ -38,7 +38,7 @@ import { isIterable } from './is-iterable';
  *
  * ```ts
  * const octetVector = new Vector(Uint8Array, 128);
- * const clamedOctetVector = new Vector(Uint8ClampedArray, 128);
+ * const clampedOctetVector = new Vector(Uint8ClampedArray, 128);
  * const shortVector = new Vector(Int16Array, 128);
  * const ushortVector = new Vector(Uint16Array, 128);
  * const longVector = new Vector(Int32Array, 128);
