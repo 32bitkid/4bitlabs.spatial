@@ -246,11 +246,13 @@ export class Vector<T extends TypedArray> {
    * Push multiple elements onto the end of the {@link Vector}, resizing _multiple-times_ if needed.
    *
    * @param values
+   * @returns The new length of the vector.
    */
-  pushN(values: ArrayLike<number>): void {
+  pushN(values: ArrayLike<number>): number {
     while (this._length + values.length > this._capacity) this.grow();
     this._array.set(values, this._length);
     this._length += values.length;
+    return this._length;
   }
 
   /**
