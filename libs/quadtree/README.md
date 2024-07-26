@@ -1,5 +1,7 @@
 # `@4bitlabs/quadtree` [![License][license]][npm] [![NPM Version][version]][npm] [![NPM Downloads][dl]][npm]
 
+A simple 2D quadtree (2×2 spatial division) for fast, efficient spatial queries.
+
 ![Quadtree split illustration][quadtree-split-img]
 
 ## Installing
@@ -18,20 +20,34 @@ $ pnpm add @4bitlabs/quadtree
 
 ## Usage
 
+An _easy_ way to use this within a browser is to use the built-in `DOMRect` class, consider:
+
 ```ts
-import { quadtree } from '@4bitlabs/quadtree';
+import { quadtree, type Bounds } from '@4bitlabs/quadtree';
 
-interface Entity {
-  /* whatever you like */
+const rectBounds = (r: DOMRect) => [r.left, r.top, r.right, r.bottom];
+
+const space = quadtree<DOMRect>([0, 0, 1000, 1000], rectBounds);
+space.insert(new DOMRect(25, 25, 50, 50));
+
+const matches = space.search([20, 20, 80, 80]);
+```
+
+Or with custom objects:
+
+```ts
+import { quadtree, type Bounds } from '@4bitlabs/quadtree';
+
+class Shape {
+  bounds(): Bounds {
+    /* TODO implement return bounds */
+    return [0, 0, 0, 0]
+  }
 }
 
-type Bounds = [left: number, top: number, right: number, bottom: number];
-
-function getBounds(it: Entity): Bounds {
-  /* determine bounds for entity, specified in  */
-}
-
-const space = quadtree<Entity>([0, 0, 1000, 1000], Entity.prototype.getBounds);
+const space = quadtree<Shape>([0, 0, 1000, 1000], Shape.prototype.bounds);
+space.insert(new Shape());
+const matches = space.search([20, 20, 80, 80]);
 ```
 
 ## Options
@@ -44,7 +60,7 @@ const space = quadtree<Entity>([0, 0, 1000, 1000], Entity.prototype.getBounds);
 | `maxChildren` | The maximum number of objects in a node before it will split | `10`     |
 
 ```ts
-const space = quadtree<Entity>([0, 0, 1000, 1000], Entity.prototype.getBounds, {
+const space = quadtree<DOMRect>([0, 0, 1000, 1000], rectBounds, {
   maxDepth: 5,
   maxChildren: 50,
 });

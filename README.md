@@ -1,6 +1,10 @@
 # Getting started
 
-This repository contains TypeScript implementations for a [**quadtree**][quadtree] and **ennetree**.
+This repository contains the monorepo for the following TypeScript packages:
+
+- `@4bitlabs/quadtree` - A simple 2D [**quadtree**][quadtree] (2×2 spatial division) for fast, efficient spatial queries
+- `@4bitlabs/ennetree` - A simple 2D **ennetree** (3×3 spatial division) for fast, efficient spatial queries.
+- `@4bitlabs/vector` - A simple, TypedArray-backed resizable vector data-structure.
 
 ## [Quadtree](/libs/quadtree/README.md)
 
@@ -9,14 +13,11 @@ This repository contains TypeScript implementations for a [**quadtree**][quadtre
 ```ts
 import { quadtree } from '@4bitlabs/quadtree';
 
-interface Entity {
-  /* whatever you like */
-}
-
-type Bounds = [left: number, top: number, right: number, bottom: number];
-
-function getBounds(it: Entity): Bounds {
-  /* determine bounds for entity, specified in  */
+class Entity {
+  bounds(): Bounds {
+    /* determine bounds */
+    return [0, 0, 0, 0];
+  }
 }
 
 const space = quadtree<Entity>([0, 0, 1000, 1000], Entity.prototype.getBounds);
@@ -31,24 +32,19 @@ Similar to a [**quadtree**][quadtree] but instead of _binary_ recursive subdivis
 Depending on the use-case, this can sometimes yield _more_ efficient spatial queries.
 
 ```ts
-import { ennetree } from '@4bitlabs/ennetree';
+import { ennetree, type Bounds } from '@4bitlabs/ennetree';
 
-interface Entity {
-  /* whatever you like */
-}
-
-type Bounds = [left: number, top: number, right: number, bottom: number];
-
-function getBounds(
-  it: Entity,
-): [x0: number, y0: number, x1: number, y1: number] {
-  /* determine bounds for entity */
+class Entity {
+  bounds(): Bounds {
+    /* determine bounds */
+    return [0, 0, 0, 0];
+  }
 }
 
 const space = ennetree<Entity>([0, 0, 1000, 1000], Entity.prototype.getBounds);
 ```
 
-## Options
+## Quadtree/Ennetree Options
 
 Both `quadtree()` and `ennetree()` accept a third argument of `options`:
 

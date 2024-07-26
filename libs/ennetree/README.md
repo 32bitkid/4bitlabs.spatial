@@ -1,5 +1,7 @@
 # `@4bitlabs/ennetree` [![License][license]][npm] [![NPM Version][version]][npm] [![NPM Downloads][dl]][npm]
 
+A simple 2D ennetree (3×3 spatial division) for fast, efficient spatial queries.
+
 ![Ennetree split illustration][ennetree-split-img]
 
 ## Installing
@@ -18,26 +20,36 @@ $ pnpm add @4bitlabs/ennetree
 
 ## Usage
 
-Similar to a [**quadtree**][quadtree], but instead of _binary_ recursive subdivisions, an **ennetree** uses trinary (3&times;3) subdivisions.
+Similar to a [**quadtree**][quadtree], but instead of _binary_ recursive subdivisions, an **ennetree** uses trinary (3&times;3) subdivisions. Depending on the use-case, this can sometimes yield _more_ efficient spatial queries.
 
-Depending on the use-case, this can sometimes yield _more_ efficient spatial queries.
+An _easy_ way to use this within a browser is to use the built-in `DOMRect` class, consider:
 
 ```ts
-import { ennetree } from '@4bitlabs/ennetree';
+import { ennetree, type Bounds } from '@4bitlabs/ennetree';
 
-interface Entity {
-  /* whatever you like */
+const rectBounds = (r: DOMRect) => [r.left, r.top, r.right, r.bottom];
+
+const space = ennetree<DOMRect>([0, 0, 1000, 1000], rectBounds);
+space.insert(new DOMRect(25, 25, 50, 50));
+
+const matches = space.search([20, 20, 80, 80]);
+```
+
+Or with custom objects:
+
+```ts
+import { ennetree, type Bounds } from '@4bitlabs/ennetree';
+
+class Shape {
+  bounds(): Bounds {
+    /* TODO implement return bounds */
+    return [0, 0, 0, 0]
+  }
 }
 
-type Bounds = [left: number, top: number, right: number, bottom: number];
-
-function getBounds(
-  it: Entity,
-): [x0: number, y0: number, x1: number, y1: number] {
-  /* determine bounds for entity */
-}
-
-const space = ennetree<Entity>([0, 0, 1000, 1000], Entity.prototype.getBounds);
+const space = ennetree<Shape>([0, 0, 1000, 1000], Shape.prototype.bounds);
+space.insert(new Shape());
+const matches = space.search([20, 20, 80, 80]);
 ```
 
 ## Options
@@ -50,7 +62,7 @@ const space = ennetree<Entity>([0, 0, 1000, 1000], Entity.prototype.getBounds);
 | `maxChildren` | The maximum number of objects in a node before it will split | `10`     |
 
 ```ts
-const space = ennetree<Entity>([0, 0, 1000, 1000], Entity.prototype.getBounds, {
+const space = ennetree<DOMRect>([0, 0, 1000, 1000], rectBounds, {
   maxDepth: 5,
   maxChildren: 50,
 });

@@ -1,7 +1,7 @@
 {
   "name": "@4bitlabs/quadtree",
   "version": "1.0.5",
-  "description": "A basic 2D quadtree (2×2 spatial division) for fast, efficient spatial queries",
+  "description": "A simple 2D quadtree (2×2 spatial division) for fast, efficient spatial queries",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "homepage": "https://github.com/32bitkid/4bitlabs.spatial/tree/main/libs/quadtree",
