@@ -41,7 +41,7 @@ import { quadtree, type Bounds } from '@4bitlabs/quadtree';
 class Shape {
   bounds(): Bounds {
     /* TODO implement return bounds */
-    return [0, 0, 0, 0]
+    return [0, 0, 0, 0];
   }
 }
 
