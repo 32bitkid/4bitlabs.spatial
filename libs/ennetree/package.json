@@ -4,7 +4,7 @@
   "description": "A simple 2D ennetree (3×3 spatial division) for fast, efficient spatial queries",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "homepage": "https://github.com/32bitkid/4bitlabs.spatial/tree/main/libs/ennetree",
+  "homepage": "https://32bitkid.github.io/4bitlabs.spatial/modules/_4bitlabs_ennetree.html",
   "bugs": "https://github.com/32bitkid/4bitlabs.spatial/issues",
   "repository": {
     "type": "git",

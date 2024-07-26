@@ -4,7 +4,7 @@
   "description": "A simple 2D quadtree (2×2 spatial division) for fast, efficient spatial queries",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "homepage": "https://github.com/32bitkid/4bitlabs.spatial/tree/main/libs/quadtree",
+  "homepage": "https://32bitkid.github.io/4bitlabs.spatial/modules/_4bitlabs_quadtree.html",
   "bugs": "https://github.com/32bitkid/4bitlabs.spatial/issues",
   "repository": {
     "type": "git",

@@ -4,7 +4,7 @@
   "description": "A simple, TypedArray-backed resizable vector data-structure",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "homepage": "https://github.com/32bitkid/4bitlabs.spatial/tree/main/libs/vector",
+  "homepage": "https://32bitkid.github.io/4bitlabs.spatial/modules/_4bitlabs_vector.html",
   "bugs": "https://github.com/32bitkid/4bitlabs.spatial/issues",
   "repository": {
     "type": "git",
