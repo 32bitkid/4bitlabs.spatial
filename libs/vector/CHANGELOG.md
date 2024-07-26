@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/32bitkid/4bitlabs.spatial/compare/@4bitlabs/vector@0.2.0...@4bitlabs/vector@0.2.1) (2024-07-26)
+
+### Chore
+
+- adding bigint to keywords ([379e72a](https://github.com/32bitkid/4bitlabs.spatial/commit/379e72acf391a2d076c19a6f2b57d2b0efbe772b))
+- reworking the type definitions for VectorFromOptions ([3694a38](https://github.com/32bitkid/4bitlabs.spatial/commit/3694a384b4c4ce56136406c5a62acf49cc5062b4))
+
+### Docs
+
+- fix type in clampedOctetVector ([31003c4](https://github.com/32bitkid/4bitlabs.spatial/commit/31003c4fc8080cf128c4ea42e9cf742e5f1abf52))
+- Unifying documentation for ennetree, quadtree, and vector ([bcf057d](https://github.com/32bitkid/4bitlabs.spatial/commit/bcf057d2de92440006777654b2721acd88209517))
+- update homepage link to documentation ([5719d11](https://github.com/32bitkid/4bitlabs.spatial/commit/5719d11fdf4f63f49dbc1cce3aabb252328bc028))
+- Updating readme and module documentation of all packages ([33d79e2](https://github.com/32bitkid/4bitlabs.spatial/commit/33d79e216c8c2e1eecd4b764d87b02d71f5a585b))
+
 # [0.2.0](https://github.com/32bitkid/4bitlabs.spatial/compare/@4bitlabs/vector@0.1.2...@4bitlabs/vector@0.2.0) (2024-07-24)
 
 ### Breaking

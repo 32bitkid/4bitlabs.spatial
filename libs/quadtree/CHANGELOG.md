@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/32bitkid/4bitlabs.spatial/compare/@4bitlabs/quadtree@1.0.5...@4bitlabs/quadtree@1.1.0) (2024-07-26)
+
+### Docs
+
+- General improvements to documentation ([644d5ba](https://github.com/32bitkid/4bitlabs.spatial/commit/644d5ba09600924a53c0862eef7a74763c6fb07f))
+- running prettier ([cfb4a48](https://github.com/32bitkid/4bitlabs.spatial/commit/cfb4a48f6179c5cd5284fda0c4a11038751e86cc))
+- Unifying documentation for ennetree, quadtree, and vector ([bcf057d](https://github.com/32bitkid/4bitlabs.spatial/commit/bcf057d2de92440006777654b2721acd88209517))
+- update homepage link to documentation ([5719d11](https://github.com/32bitkid/4bitlabs.spatial/commit/5719d11fdf4f63f49dbc1cce3aabb252328bc028))
+- Updating readme and module documentation of all packages ([33d79e2](https://github.com/32bitkid/4bitlabs.spatial/commit/33d79e216c8c2e1eecd4b764d87b02d71f5a585b))
+
+### Fix
+
+- always invoke boundFn with item as `this` ([92ff771](https://github.com/32bitkid/4bitlabs.spatial/commit/92ff7718b1f14f49bdf2fca0fca01a5e31277550))
+
+### New
+
+- Added bounds property to ennetree and quadtree ([1a160b2](https://github.com/32bitkid/4bitlabs.spatial/commit/1a160b2a0b8bf1f6f48467f5747aec3cb5bb751b))
+
 ## [1.0.5](https://github.com/32bitkid/4bitlabs.spatial/compare/@4bitlabs/quadtree@1.0.4...@4bitlabs/quadtree@1.0.5) (2024-07-24)
 
 ### Chore
