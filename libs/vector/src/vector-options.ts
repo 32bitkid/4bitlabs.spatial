@@ -28,20 +28,7 @@ export interface VectorOptions {
 
 /**
  * The advanced options that can be used to control the construction with {@link Vector.from} or {@link BigVector.from}
+ *
+ * @interface
  */
-export interface VectorFromOptions {
-  /**
-   * The initial capacity of the {@link Vector}.
-   *
-   * @defaultValue `0`, unless {@link VectorOptions.initialLength | initialLength} is greater.
-   */
-  initialCapacity?: number;
-
-  /**
-   * This method is called when the Vector needs to be resized to determine how much more memory should be allocated.
-   * The default behavior is to grow by a rate of _1.5_.
-   *
-   * @defaultValue `(current: number) => Math.ceil(current * 1.5)`
-   */
-  growthFn?: (current: number) => number;
-}
+export type VectorFromOptions = Omit<VectorOptions, 'initialLength'>;
