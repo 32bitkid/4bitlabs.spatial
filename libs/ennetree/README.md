@@ -3,6 +3,7 @@
 A simple 2D ennetree (3×3 spatial division) for fast, efficient spatial queries.
 
 ![Ennetree split illustration][ennetree-split-img]
+\
 
 ## Installing
 
@@ -17,6 +18,10 @@ $ yarn add @4bitlabs/ennetree
 ```shell
 $ pnpm add @4bitlabs/ennetree
 ```
+
+## Documentation
+
+Full documentation for the library can be found [here](https://32bitkid.github.io/4bitlabs.spatial/modules/_4bitlabs_ennetree.html)
 
 ## Usage
 
@@ -67,6 +72,10 @@ const space = ennetree<DOMRect>([0, 0, 1000, 1000], rectBounds, {
   maxChildren: 50,
 });
 ```
+
+## License
+
+[ISC](https://github.com/32bitkid/4bitlabs.spatial/blob/HEAD/libs/vector/LICENSE.txt)
 
 [quadtree]: https://en.wikipedia.org/wiki/Quadtree
 [npm]: https://www.npmjs.com/package/@4bitlabs/ennetree

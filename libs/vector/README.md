@@ -22,6 +22,10 @@ Using pnpm:
 $ pnpm add @4bitlabs/vector
 ```
 
+## Documentation
+
+Full documentation for the library can be found [here](https://32bitkid.github.io/4bitlabs.spatial/modules/_4bitlabs_vector.html)
+
 ## Usage
 
 ```ts
@@ -46,3 +50,7 @@ import { BigVector } from '@4bitlabs/vector/dist';
 const uint64s = new BigVector(BigUint64Array);
 uint64s.push(0xffff_ffff_ffff_ffffn);
 ```
+
+## License
+
+[ISC](https://github.com/32bitkid/4bitlabs.spatial/blob/HEAD/libs/vector/LICENSE.txt)

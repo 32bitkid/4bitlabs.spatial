@@ -19,6 +19,7 @@
     "build": "lerna run build",
     "test": "lerna run test",
     "docs": "typedoc --options typedoc.all.json",
+    "docs:rebuild": "rimraf docs/ && npm run docs",
     "clean": "lerna run clean",
     "clean:wipe": "lerna run clean:wipe"
   },

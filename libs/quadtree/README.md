@@ -18,6 +18,10 @@ $ yarn add @4bitlabs/quadtree
 $ pnpm add @4bitlabs/quadtree
 ```
 
+## Documentation
+
+Full documentation for the library can be found [here](https://32bitkid.github.io/4bitlabs.spatial/modules/_4bitlabs_quadtree.html)
+
 ## Usage
 
 An _easy_ way to use this within a browser is to use the built-in `DOMRect` class, consider:
@@ -65,6 +69,10 @@ const space = quadtree<DOMRect>([0, 0, 1000, 1000], rectBounds, {
   maxChildren: 50,
 });
 ```
+
+## License
+
+[ISC](https://github.com/32bitkid/4bitlabs.spatial/blob/HEAD/libs/vector/LICENSE.txt)
 
 [quadtree]: https://en.wikipedia.org/wiki/Quadtree
 [npm]: https://www.npmjs.com/package/@4bitlabs/quadtree
