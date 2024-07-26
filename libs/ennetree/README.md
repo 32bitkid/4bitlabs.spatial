@@ -3,7 +3,6 @@
 A simple 2D ennetree (3×3 spatial division) for fast, efficient spatial queries.
 
 ![Ennetree split illustration][ennetree-split-img]
-\
 
 ## Installing
 
