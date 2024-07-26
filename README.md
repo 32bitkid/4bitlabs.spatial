@@ -6,7 +6,7 @@ This repository contains the monorepo for the following TypeScript packages:
 - `@4bitlabs/ennetree` - A simple 2D **ennetree** (3×3 spatial division) for fast, efficient spatial queries.
 - `@4bitlabs/vector` - A simple, TypedArray-backed resizable vector data-structure.
 
-## [Quadtree](/libs/quadtree/README.md)
+## Quadtree
 
 ![Quadtree split illustration][quadtree-split-img]
 
@@ -23,7 +23,7 @@ class Entity {
 const space = quadtree<Entity>([0, 0, 1000, 1000], Entity.prototype.getBounds);
 ```
 
-## [Ennetree](/libs/ennetree/README.md)
+## Ennetree
 
 Similar to a [**quadtree**][quadtree] but instead of _binary_ recursive subdivisions, an **ennetree** uses trinary (3&times;3) subdivisions.
 
