@@ -10,6 +10,11 @@ export interface Ennetree<T> {
   readonly size: number;
 
   /**
+   * The bounds of this {@link Ennetree}.
+   */
+  readonly bounds: Readonly<Bounds>;
+
+  /**
    * Insert an item into the {@link Ennetree}.
    *
    * @param item The item to insert.

@@ -82,6 +82,10 @@ export class eTree<T extends object> implements Ennetree<T> {
     return count;
   }
 
+  get bounds(): Readonly<Bounds> {
+    return this._bounds;
+  }
+
   insert(item: Readonly<T>): void {
     if (!this.isSplit && this.items.size + 1 > this.maxChildren) {
       this.isSplit = true;

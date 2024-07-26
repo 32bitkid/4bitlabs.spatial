@@ -62,6 +62,10 @@ export class qTree<T extends object> implements Quadtree<T> {
     return count;
   }
 
+  get bounds(): Readonly<Bounds> {
+    return this._bounds;
+  }
+
   insert(item: Readonly<T>): void {
     if (!this.isSplit && this.items.size + 1 > this.maxChildren) {
       this.isSplit = true;

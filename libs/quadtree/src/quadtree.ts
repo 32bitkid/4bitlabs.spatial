@@ -10,6 +10,11 @@ export interface Quadtree<T> {
   readonly size: number;
 
   /**
+   * The bounds of this {@link Quadtree}.
+   */
+  readonly bounds: Readonly<Bounds>;
+
+  /**
    * Insert an item into the {@link Quadtree}.
    *
    * @param item The item to insert.
