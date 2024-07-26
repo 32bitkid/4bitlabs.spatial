@@ -84,7 +84,7 @@ export class qTree<T extends object> implements Quadtree<T> {
   private tryChildInsert(item: Readonly<T>): boolean {
     for (let i = 0; i < 4; i++) {
       const childRect = this.childAreas[i];
-      const rect = this.boundsFn(item);
+      const rect = this.boundsFn.call(item, item);
       if (contains(childRect, rect)) {
         let child = this.children[i];
         if (!child) {
@@ -116,7 +116,7 @@ export class qTree<T extends object> implements Quadtree<T> {
 
   collect(area: Readonly<Bounds>, result: Readonly<T>[] = []): Readonly<T>[] {
     for (const item of this.items) {
-      const rect = this.boundsFn(item);
+      const rect = this.boundsFn.call(item, item);
       if (overlaps(area, rect)) result.push(item);
     }
 
@@ -146,7 +146,7 @@ export class qTree<T extends object> implements Quadtree<T> {
 
   *search(area: Readonly<Bounds>): Generator<Readonly<T>, void, undefined> {
     for (const item of this.items) {
-      const rect = this.boundsFn(item);
+      const rect = this.boundsFn.call(item, item);
       if (overlaps(area, rect)) yield item;
     }
 

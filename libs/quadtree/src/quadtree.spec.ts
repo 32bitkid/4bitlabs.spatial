@@ -44,4 +44,31 @@ describe('quadtree', () => {
     expect(results).toHaveLength(1);
     expect(results[0]).toBe(r1);
   });
+
+  it('should handle a class method', () => {
+    class Item {
+      private readonly x: number;
+      private readonly y: number;
+      private readonly w: number;
+      private readonly h: number;
+
+      constructor(x: number, y: number, width: number, height: number) {
+        this.x = x;
+        this.y = y;
+        this.w = width;
+        this.h = height;
+      }
+      bounds(): Bounds {
+        const { x, y, w, h } = this;
+        return [x, y, x + w, y + h];
+      }
+    }
+
+    const space = quadtree([0, 0, 1000, 1000], Item.prototype.bounds);
+    space.insert(new Item(10, 10, 40, 40));
+    space.insert(new Item(150, 150, 10, 10));
+    expect(space.collect([0, 0, 100, 100]).length).toBe(1);
+    expect(space.collect([100, 100, 200, 200]).length).toBe(1);
+    expect(space.collect([200, 200, 300, 300]).length).toBe(0);
+  });
 });

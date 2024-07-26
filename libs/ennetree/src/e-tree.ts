@@ -104,7 +104,7 @@ export class eTree<T extends object> implements Ennetree<T> {
   private tryChildInsert(item: Readonly<T>): boolean {
     for (let i = 0; i < 9; i++) {
       const childRect = this.childAreas[i];
-      const rect = this.boundsFn(item);
+      const rect = this.boundsFn.call(item, item);
       if (contains(childRect, rect)) {
         let child = this.children[i];
         if (!child) {
@@ -136,7 +136,7 @@ export class eTree<T extends object> implements Ennetree<T> {
 
   collect(area: Readonly<Bounds>, result: Readonly<T>[] = []): Readonly<T>[] {
     for (const item of this.items) {
-      const rect = this.boundsFn(item);
+      const rect = this.boundsFn.call(item, item);
       if (overlaps(area, rect)) result.push(item);
     }
 
@@ -166,7 +166,7 @@ export class eTree<T extends object> implements Ennetree<T> {
 
   *search(area: Readonly<Bounds>): Generator<Readonly<T>, void, undefined> {
     for (const item of this.items) {
-      const rect = this.boundsFn(item);
+      const rect = this.boundsFn.call(item, item);
       if (overlaps(area, rect)) yield item;
     }
 
