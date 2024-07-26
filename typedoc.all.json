@@ -1,0 +1,10 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "extends": ["./typedoc.json"],
+  "out": "./docs",
+  "tsconfig": "./tsconfig.base.json",
+  "readme": "./README.md",
+  "entryPoints": ["./libs/*"],
+  "entryPointStrategy": "packages",
+  "name": "4bitlabs Spatial Utilities"
+}

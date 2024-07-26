@@ -15,7 +15,6 @@
     "clean:wipe": "rimraf ./dist",
     "build": "tsc --build",
     "test": "jest src/",
-    "docs": "typedoc --options ./typedoc.json",
     "prepack": "npm run build"
   },
   "keywords": [

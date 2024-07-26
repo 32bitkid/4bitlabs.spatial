@@ -1,12 +1,9 @@
 import { Bounds, contains, overlaps } from './bounds';
 import { Quadtree } from './quadtree';
-
-export interface qTreeOptions {
-  maxDepth?: number;
-  maxChildren?: number;
-}
+import { qTreeOptions } from './q-tree-options';
 
 export class qTree<T extends object> implements Quadtree<T> {
+  private readonly _bounds: Readonly<Bounds>;
   private readonly depth: number;
   private readonly maxChildren: number;
   private readonly maxDepth: number;
@@ -28,7 +25,7 @@ export class qTree<T extends object> implements Quadtree<T> {
   private isSplit: boolean;
 
   constructor(
-    [x0, y0, x1, y1]: Readonly<Bounds>,
+    bounds: Readonly<Bounds>,
     options: qTreeOptions,
     boundFn: (item: T) => Bounds,
     quadCache: WeakMap<T, qTree<T>>,
@@ -37,10 +34,12 @@ export class qTree<T extends object> implements Quadtree<T> {
     const { maxDepth = 7, maxChildren = 10 } = options;
     this.maxDepth = maxDepth;
     this.maxChildren = maxChildren;
+    this._bounds = bounds;
     this.boundsFn = boundFn;
     this.quadCache = quadCache;
     this.depth = depth;
 
+    const [x0, y0, x1, y1] = bounds;
     const midX = (x0 + x1) / 2;
     const midY = (y0 + y1) / 2;
     this.childAreas = [
@@ -54,14 +53,13 @@ export class qTree<T extends object> implements Quadtree<T> {
     this.items = new Set();
   }
 
-  clear(): void {
-    this.items.clear();
+  get size(): number {
+    let count = this.items.size;
     for (let i = 0; i < 4; i++) {
       const child = this.children[i];
-      if (!child) continue;
-      child.clear();
-      this.children[i] = null;
+      if (child) count += child.size;
     }
+    return count;
   }
 
   insert(item: Readonly<T>): void {
@@ -100,20 +98,6 @@ export class qTree<T extends object> implements Quadtree<T> {
       }
     }
     return false;
-  }
-
-  remove(item: Readonly<T>): boolean {
-    if (this.items.has(item)) {
-      this.items.delete(item);
-      this.quadCache.delete(item);
-
-      // TODO handle cleanup
-      return true;
-    }
-
-    const quad = this.quadCache.get(item);
-    if (!quad) return false;
-    return quad.remove(item);
   }
 
   collectAll(result: Readonly<T>[] = []): Readonly<T>[] {
@@ -175,12 +159,28 @@ export class qTree<T extends object> implements Quadtree<T> {
     }
   }
 
-  size(): number {
-    let count = this.items.size;
+  remove(item: Readonly<T>): boolean {
+    if (this.items.has(item)) {
+      this.items.delete(item);
+      this.quadCache.delete(item);
+
+      // TODO handle cleanup
+      return true;
+    }
+
+    const quad = this.quadCache.get(item);
+    if (!quad) return false;
+    return quad.remove(item);
+  }
+
+  clear(): void {
+    for (const item of this.items) this.quadCache.delete(item);
+    this.items.clear();
     for (let i = 0; i < 4; i++) {
       const child = this.children[i];
-      if (child) count += child.size();
+      if (!child) continue;
+      child.clear();
+      this.children[i] = null;
     }
-    return count;
   }
 }

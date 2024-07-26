@@ -1,6 +1,6 @@
 # `@4bitlabs/ennetree` [![License][license]][npm] [![NPM Version][version]][npm] [![NPM Downloads][dl]][npm]
 
-![Ennetree split illustration](/docs/public/ennetree-split.png)
+![Ennetree split illustration][ennetree-split-img]
 
 ## Installing
 
@@ -61,3 +61,4 @@ const space = ennetree<Entity>([0, 0, 1000, 1000], Entity.prototype.getBounds, {
 [version]: https://img.shields.io/npm/v/%404bitlabs%2Fennetree
 [license]: https://img.shields.io/npm/l/%404bitlabs%2Fennetree
 [dl]: https://img.shields.io/npm/dy/%404bitlabs%2Fennetree
+[ennetree-split-img]: https://github.com/32bitkid/4bitlabs.spatial/blob/main/ennetree-split.png?raw=true

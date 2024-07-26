@@ -1,12 +1,9 @@
 import { Bounds, contains, overlaps } from './bounds';
 import { Ennetree } from './ennetree';
-
-export interface eTreeOptions {
-  maxDepth?: number;
-  maxChildren?: number;
-}
+import { eTreeOptions } from './e-tree-options';
 
 export class eTree<T extends object> implements Ennetree<T> {
+  private readonly _bounds: Readonly<Bounds>;
   private readonly depth: number;
   private readonly maxChildren: number;
   private readonly maxDepth: number;
@@ -38,7 +35,7 @@ export class eTree<T extends object> implements Ennetree<T> {
   private isSplit: boolean;
 
   constructor(
-    [x0, y0, x3, y3]: Readonly<Bounds>,
+    bounds: Readonly<Bounds>,
     options: eTreeOptions,
     boundsFn: (item: T) => Bounds,
     quadCache: WeakMap<T, eTree<T>>,
@@ -49,8 +46,10 @@ export class eTree<T extends object> implements Ennetree<T> {
     this.maxChildren = maxChildren;
     this.boundsFn = boundsFn;
     this.quadCache = quadCache;
+    this._bounds = bounds;
     this.depth = depth;
 
+    const [x0, y0, x3, y3] = bounds;
     const x1 = (2 / 3) * x0 + (1 / 3) * x3;
     const x2 = (1 / 3) * x0 + (2 / 3) * x3;
     const y1 = (2 / 3) * y0 + (1 / 3) * y3;
@@ -74,14 +73,13 @@ export class eTree<T extends object> implements Ennetree<T> {
     this.items = new Set();
   }
 
-  clear(): void {
-    this.items.clear();
-    for (let i = 0; i < 4; i++) {
+  get size(): number {
+    let count = this.items.size;
+    for (let i = 0; i < 9; i++) {
       const child = this.children[i];
-      if (!child) continue;
-      child.clear();
-      this.children[i] = null;
+      if (child) count += child.size;
     }
+    return count;
   }
 
   insert(item: Readonly<T>): void {
@@ -120,19 +118,6 @@ export class eTree<T extends object> implements Ennetree<T> {
       }
     }
     return false;
-  }
-
-  remove(item: Readonly<T>): boolean {
-    if (this.items.has(item)) {
-      this.items.delete(item);
-      this.quadCache.delete(item);
-      // TODO handle cleanup
-      return true;
-    }
-
-    const quad = this.quadCache.get(item);
-    if (!quad) return false;
-    return quad.remove(item);
   }
 
   collectAll(result: Readonly<T>[] = []): Readonly<T>[] {
@@ -194,12 +179,26 @@ export class eTree<T extends object> implements Ennetree<T> {
     }
   }
 
-  size(): number {
-    let count = this.items.size;
-    for (let i = 0; i < 9; i++) {
-      const child = this.children[i];
-      if (child) count += child.size();
+  remove(item: Readonly<T>): boolean {
+    if (this.items.has(item)) {
+      this.items.delete(item);
+      this.quadCache.delete(item);
+      // TODO handle cleanup
+      return true;
     }
-    return count;
+
+    const quad = this.quadCache.get(item);
+    if (!quad) return false;
+    return quad.remove(item);
+  }
+
+  clear(): void {
+    this.items.clear();
+    for (let i = 0; i < 4; i++) {
+      const child = this.children[i];
+      if (!child) continue;
+      child.clear();
+      this.children[i] = null;
+    }
   }
 }

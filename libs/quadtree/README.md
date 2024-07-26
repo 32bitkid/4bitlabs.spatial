@@ -1,6 +1,6 @@
 # `@4bitlabs/quadtree` [![License][license]][npm] [![NPM Version][version]][npm] [![NPM Downloads][dl]][npm]
 
-![Quadtree split illustration](/docs/public/quadtree-split.png)
+![Quadtree split illustration][quadtree-split-img]
 
 ## Installing
 
@@ -55,3 +55,4 @@ const space = quadtree<Entity>([0, 0, 1000, 1000], Entity.prototype.getBounds, {
 [version]: https://img.shields.io/npm/v/%404bitlabs%2Fquadtree
 [license]: https://img.shields.io/npm/l/%404bitlabs%2Fquadtree
 [dl]: https://img.shields.io/npm/dy/%404bitlabs%2Fquadtree
+[quadtree-split-img]: https://github.com/32bitkid/4bitlabs.spatial/blob/main/quadtree-split.png?raw=true

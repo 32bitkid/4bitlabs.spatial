@@ -18,6 +18,7 @@
     "format:fix": "prettier -w .",
     "build": "lerna run build",
     "test": "lerna run test",
+    "docs": "typedoc --options typedoc.all.json",
     "clean": "lerna run clean",
     "clean:wipe": "lerna run clean:wipe"
   },

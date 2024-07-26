@@ -1,10 +1,10 @@
-# `@4bitlabs/quadtree` and `@4bitlabs/ennetree`
+# Getting started
 
 This repository contains TypeScript implementations for a [**quadtree**][quadtree] and **ennetree**.
 
 ## [Quadtree](/libs/quadtree/README.md)
 
-![Quadtree split illustration](/docs/public/quadtree-split.png)
+![Quadtree split illustration][quadtree-split-img]
 
 ```ts
 import { quadtree } from '@4bitlabs/quadtree';
@@ -26,7 +26,7 @@ const space = quadtree<Entity>([0, 0, 1000, 1000], Entity.prototype.getBounds);
 
 Similar to a [**quadtree**][quadtree] but instead of _binary_ recursive subdivisions, an **ennetree** uses trinary (3&times;3) subdivisions.
 
-![Ennetree split illustration](/docs/public/ennetree-split.png)
+![Ennetree split illustration][ennetree-split-img]
 
 Depending on the use-case, this can sometimes yield _more_ efficient spatial queries.
 
@@ -65,3 +65,5 @@ const space = quadtree<Entity>([0, 0, 1000, 1000], Entity.prototype.getBounds, {
 ```
 
 [quadtree]: https://en.wikipedia.org/wiki/Quadtree
+[quadtree-split-img]: https://github.com/32bitkid/4bitlabs.spatial/blob/main/quadtree-split.png?raw=true
+[ennetree-split-img]: https://github.com/32bitkid/4bitlabs.spatial/blob/main/ennetree-split.png?raw=true
