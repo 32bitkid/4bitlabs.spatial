@@ -72,7 +72,7 @@ const space = quadtree<DOMRect>([0, 0, 1000, 1000], rectBounds, {
 
 ## License
 
-[ISC](https://github.com/32bitkid/4bitlabs.spatial/blob/HEAD/libs/vector/LICENSE.txt)
+[ISC](https://github.com/32bitkid/4bitlabs.spatial/blob/HEAD/libs/quadtree/LICENSE.txt)
 
 [quadtree]: https://en.wikipedia.org/wiki/Quadtree
 [npm]: https://www.npmjs.com/package/@4bitlabs/quadtree
