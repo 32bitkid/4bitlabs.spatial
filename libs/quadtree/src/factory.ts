@@ -24,10 +24,10 @@ import { qTreeOptions } from './q-tree-options';
  * const rectBounds = ({ x, y, width, height }: Rectangle) =>
  *   [x, y, x + width, r.y + height];
  *
- * const qt = quadtree([0,0,1000,1000], rectBounds);
+ * const qt = quadtree<Rectangle>([0,0,1000,1000], rectBounds);
  *
  * // Add a rectangle
- * qt.insert([20, 20, 50, 50]);
+ * qt.insert({ x: 20, y: 20, width: 50, height: 50 });
  *
  * // Collect items
  * const results = qt.collect([0, 0, 100, 100]);
@@ -36,7 +36,7 @@ import { qTreeOptions } from './q-tree-options';
  * @example Using advanced options
  *
  * ```ts
- * const qt = quadtree(
+ * const qt = quadtree<Rectangle>(
  *   [0,0,1000,1000],
  *   rectBounds,
  *   {

@@ -24,10 +24,10 @@ import { eTreeOptions } from './e-tree-options';
  * const rectBounds = ({ x, y, width, height }: Rectangle) =>
  *   [x, y, x + width, r.y + height];
  *
- * const qt = quadtree([0,0,1000,1000], rectBounds);
+ * const qt = ennetree<Rectangle>([0,0,1000,1000], rectBounds);
  *
  * // Add a rectangle
- * qt.insert([20, 20, 50, 50]);
+ * qt.insert({ x: 20, y: 20, width: 50, height: 50 });
  *
  * // Collect items
  * const results = qt.collect([0, 0, 100, 100]);
@@ -36,13 +36,22 @@ import { eTreeOptions } from './e-tree-options';
  * @example Using advanced options
  *
  * ```ts
- * const qt = quadtree(
+ * const qt = ennetree<Rectangle>(
  *   [0,0,1000,1000],
  *   rectBounds,
  *   {
  *     maxDepth: 4,
  *     maxChildren: 50
  *   }
+ * );
+ * ```
+ *
+ * @example Using DOMRect with ennetree
+ *
+ * ```ts
+ * const qt = ennetree<DOMRect>(
+ *   [0, 0, 1000, 1000],
+ *   ({ left, top, right, bottom }) => [left, top, right, bottom],
  * );
  * ```
  */
