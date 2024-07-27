@@ -4,7 +4,6 @@ This repository contains the monorepo for the following TypeScript packages:
 
 - `@4bitlabs/quadtree` - A simple 2D [**quadtree**][quadtree] (2×2 spatial division) for fast, efficient spatial queries
 - `@4bitlabs/ennetree` - A simple 2D **ennetree** (3×3 spatial division) for fast, efficient spatial queries.
-- `@4bitlabs/vector` - A simple, TypedArray-backed resizable vector data-structure.
 
 ## Quadtree
 
