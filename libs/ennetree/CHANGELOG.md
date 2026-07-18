@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.0](https://github.com/32bitkid/4bitlabs.spatial/compare/@4bitlabs/ennetree@1.1.0...@4bitlabs/ennetree@2.0.0) (2026-07-18)
+
+### ⚠ BREAKING CHANGES
+
+* **esm:** Migrate build to pure ESM and TypeScript with tsdown
+
+### Features
+
+* **esm:** Migrate build to pure ESM and TypeScript with tsdown
+
+
 # [1.1.0](https://github.com/32bitkid/4bitlabs.spatial/compare/@4bitlabs/ennetree@1.0.5...@4bitlabs/ennetree@1.1.0) (2024-07-26)
 
 ### Docs
