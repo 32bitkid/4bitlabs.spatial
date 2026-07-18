@@ -1,6 +1,6 @@
-import { Bounds, contains, overlaps } from './bounds';
-import { Quadtree } from './quadtree';
-import { qTreeOptions } from './q-tree-options';
+import { type Bounds, contains, overlaps } from './bounds.js';
+import type { qTreeOptions } from './q-tree-options.js';
+import type { Quadtree } from './quadtree.js';
 
 export class qTree<T extends object> implements Quadtree<T> {
   private readonly _bounds: Readonly<Bounds>;

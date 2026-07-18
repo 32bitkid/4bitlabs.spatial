@@ -1,16 +1,17 @@
 {
   "name": "performance",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "description": "Perf testing for quadtree and nontree",
-  "main": "./dist/index.js",
+  "license": "ISC",
+  "author": "J. Holmes <32bitkid@gmail.com>",
+  "type": "module",
+  "exports": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc --build",
-    "perf": "ts-node src/index.ts"
+    "perf": "node dist/index.js"
   },
-  "author": "J. Holmes <32bitkid@gmail.com>",
-  "license": "ISC",
   "dependencies": {
     "@4bitlabs/ennetree": "*",
     "@4bitlabs/quadtree": "*"

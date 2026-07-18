@@ -1,4 +1,6 @@
-import { type Bounds } from './bounds';
+import { describe, expect, it } from 'vitest';
+
+import type { Bounds } from './bounds';
 import { quadtree } from './factory';
 
 describe('quadtree', () => {
@@ -47,20 +49,19 @@ describe('quadtree', () => {
 
   it('should handle a class method', () => {
     class Item {
-      private readonly x: number;
-      private readonly y: number;
-      private readonly w: number;
-      private readonly h: number;
+      readonly #x: number;
+      readonly #y: number;
+      readonly #w: number;
+      readonly #h: number;
 
       constructor(x: number, y: number, width: number, height: number) {
-        this.x = x;
-        this.y = y;
-        this.w = width;
-        this.h = height;
+        this.#x = x;
+        this.#y = y;
+        this.#w = width;
+        this.#h = height;
       }
       bounds(): Bounds {
-        const { x, y, w, h } = this;
-        return [x, y, x + w, y + h];
+        return [this.#x, this.#y, this.#x + this.#w, this.#y + this.#h];
       }
     }
 

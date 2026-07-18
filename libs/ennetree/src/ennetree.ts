@@ -1,4 +1,4 @@
-import { Bounds } from './bounds';
+import type { Bounds } from './bounds.js';
 
 /**
  * @typeParam T The type of children of this {@link Ennetree} contains.

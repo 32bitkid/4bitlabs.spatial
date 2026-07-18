@@ -25,7 +25,8 @@
  *
  * @module
  */
-export type { Quadtree } from './quadtree';
-export type { Bounds } from './bounds';
-export type { qTreeOptions } from './q-tree-options';
-export { quadtree } from './factory';
+
+export type { Bounds } from './bounds.js';
+export { quadtree } from './factory.js';
+export type { qTreeOptions } from './q-tree-options.js';
+export type { Quadtree } from './quadtree.js';

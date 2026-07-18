@@ -1,7 +1,7 @@
-import { type Bounds } from './bounds';
-import { eTree } from './e-tree';
-import { Ennetree } from './ennetree';
-import { eTreeOptions } from './e-tree-options';
+import type { Bounds } from './bounds.js';
+import { eTree } from './e-tree.js';
+import type { eTreeOptions } from './e-tree-options.js';
+import type { Ennetree } from './ennetree.js';
 
 /**
  * Create an ennetree for a given area.

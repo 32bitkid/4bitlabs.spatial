@@ -2,30 +2,31 @@
   "name": "@4bitlabs/quadtree",
   "version": "1.1.0",
   "description": "A simple 2D quadtree (2×2 spatial division) for fast, efficient spatial queries",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "homepage": "https://32bitkid.github.io/4bitlabs.spatial/modules/_4bitlabs_quadtree.html",
-  "bugs": "https://github.com/32bitkid/4bitlabs.spatial/issues",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/32bitkid/4bitlabs.spatial.git"
-  },
-  "scripts": {
-    "clean": "tsc --build --clean",
-    "clean:wipe": "rimraf ./dist",
-    "build": "tsc --build",
-    "test": "jest src/",
-    "prepack": "npm run build"
-  },
   "keywords": [
     "quadtree",
     "spatial",
     "spatial-query",
     "2d"
   ],
-  "author": "J. Holmes <32bitkid@gmail.com>",
+  "homepage": "https://32bitkid.github.io/4bitlabs.spatial/modules/_4bitlabs_quadtree.html",
+  "bugs": "https://github.com/32bitkid/4bitlabs.spatial/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/32bitkid/4bitlabs.spatial.git"
+  },
   "license": "ISC",
+  "author": "J. Holmes <32bitkid@gmail.com>",
+  "type": "module",
+  "exports": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "./dist/**/*"
-  ]
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "clean:wipe": "rimraf ./dist",
+    "prepack": "npm run build",
+    "test": "vitest run",
+    "test:dev": "vitest dev"
+  }
 }

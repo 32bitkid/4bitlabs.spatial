@@ -1,6 +1,6 @@
-import { Bounds, contains, overlaps } from './bounds';
-import { Ennetree } from './ennetree';
-import { eTreeOptions } from './e-tree-options';
+import { type Bounds, contains, overlaps } from './bounds.js';
+import type { eTreeOptions } from './e-tree-options.js';
+import type { Ennetree } from './ennetree.js';
 
 export class eTree<T extends object> implements Ennetree<T> {
   private readonly _bounds: Readonly<Bounds>;

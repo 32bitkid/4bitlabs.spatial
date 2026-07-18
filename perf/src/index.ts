@@ -1,9 +1,9 @@
 import { quadtree } from '@4bitlabs/quadtree';
 import { ennetree } from '@4bitlabs/ennetree';
-import type { Rect, Bounds } from './helpers/geom';
-import { randRect } from './helpers/rand-rect';
-import { LinearBaseline } from './helpers/linear-baseline';
-import { sfc32 } from './helpers/rand';
+import type { Rect, Bounds } from './helpers/geom.js';
+import { randRect } from './helpers/rand-rect.js';
+import { LinearBaseline } from './helpers/linear-baseline.js';
+import { sfc32 } from './helpers/rand.js';
 
 const boundsFn = ({ x, y, w, h }: Rect): Bounds => [x, y, x + w, y + h];
 

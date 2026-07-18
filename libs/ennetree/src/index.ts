@@ -24,7 +24,8 @@
  *
  * @module
  */
-export type { Ennetree } from './ennetree';
-export type { Bounds } from './bounds';
-export type { eTreeOptions } from './e-tree-options';
-export { ennetree } from './factory';
+
+export type { Bounds } from './bounds.js';
+export type { eTreeOptions } from './e-tree-options.js';
+export type { Ennetree } from './ennetree.js';
+export { ennetree } from './factory.js';

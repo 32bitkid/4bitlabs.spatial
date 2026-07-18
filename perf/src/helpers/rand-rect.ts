@@ -1,5 +1,5 @@
-import { sfc32 } from './rand';
-import type { Rect } from './geom';
+import { sfc32 } from './rand.js';
+import type { Rect } from './geom.js';
 
 const rand = sfc32([0x41a1322b, 0xc9204145, 0x43a617d1, 0x2c947fba]).float;
 

@@ -1,7 +1,7 @@
-import { qTree } from './q-tree';
-import { Bounds } from './bounds';
-import { Quadtree } from './quadtree';
-import { qTreeOptions } from './q-tree-options';
+import type { Bounds } from './bounds.js';
+import { qTree } from './q-tree.js';
+import type { qTreeOptions } from './q-tree-options.js';
+import type { Quadtree } from './quadtree.js';
 
 /**
  * Create a quadtree for a given area.

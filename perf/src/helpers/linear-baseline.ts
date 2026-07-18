@@ -1,4 +1,4 @@
-import { Bounds, overlaps } from './geom';
+import { Bounds, overlaps } from './geom.js';
 
 export class LinearBaseline<T extends object> {
   private readonly items: Set<T> = new Set();
