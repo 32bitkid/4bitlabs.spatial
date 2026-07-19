@@ -23,12 +23,6 @@
     "lint": "biome check",
     "test": "lerna run test"
   },
-  "overrides": {
-    "tsdown": {
-      "yuku-codegen": "0.6.5",
-      "yuku-parser": "0.6.5"
-    }
-  },
   "devDependencies": {
     "@biomejs/biome": "^2.5.4",
     "@vitest/coverage-v8": "^4.1.10",
@@ -37,7 +31,7 @@
     "rimraf": "^6.1.3",
     "tinybench": "^2.8.0",
     "ts-node": "^10.9.2",
-    "tsdown": "^0.22.9",
+    "tsdown": "^0.22.11",
     "typedoc": "^0.28.20",
     "typedoc-plugin-mdn-links": "^5.1.1",
     "typedoc-plugin-missing-exports": "^4.1.4",
@@ -45,6 +39,7 @@
     "vitest": "^4.1.10"
   },
   "allowScripts": {
-    "nx@22.7.7": true
+    "nx@22.7.7": true,
+    "fsevents@2.3.3": true
   }
 }
