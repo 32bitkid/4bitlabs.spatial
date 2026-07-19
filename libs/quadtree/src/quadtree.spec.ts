@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import type { Bounds } from './bounds';
-import { quadtree } from './factory';
+import type { Bounds } from './bounds.js';
+import { quadtree } from './factory.js';
 
 describe('quadtree', () => {
   it('should do something', () => {
