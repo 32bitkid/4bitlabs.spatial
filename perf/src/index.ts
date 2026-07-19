@@ -4,12 +4,14 @@ import type { Rect, Bounds } from './helpers/geom.js';
 import { randRect } from './helpers/rand-rect.js';
 import { LinearBaseline } from './helpers/linear-baseline.js';
 import { sfc32 } from './helpers/rand.js';
+import { Bench } from 'tinybench';
 
 const boundsFn = ({ x, y, w, h }: Rect): Bounds => [x, y, x + w, y + h];
 
 const rand = sfc32([0x41a1322b, 0xc9204145, 0x43a617d1, 0x2c947fba]).float;
 
-async function runBench(count: number) {
+async function runBench(benchmark: Bench, count: number) {
+  console.log('adding %d', count)
   const linear = new LinearBaseline(boundsFn);
   const qt = quadtree<Rect>([0, 0, 1_000_000, 1_000_000], boundsFn);
   const et = ennetree<Rect>([0, 0, 1_000_000, 1_000_000], boundsFn);
@@ -21,10 +23,8 @@ async function runBench(count: number) {
     et.insert(r);
   }
 
-  const { Bench } = await import('tinybench');
-  const benchmark = new Bench();
 
-  const windows = Array.from({ length: 10 }, (): Bounds => {
+  const windows = Array.from({ length: 30 }, (): Bounds => {
     // const w = rand() * (1024 * 4) + 512,
     //   h = rand() * (1024 * 4) + 512,
     //   x = rand() * (1_000_000 - w),
@@ -47,16 +47,18 @@ async function runBench(count: number) {
     .add(`nontree (${count.toLocaleString()})`, () => {
       windows.forEach((win) => et.collect(win));
     });
-
-  console.log('warming up…');
-  await benchmark.warmup();
-  console.log('running');
-  await benchmark.run();
-  console.table(benchmark.table());
 }
 
 async function runSuite() {
-  runBench(250_000);
+  const benchmark = new Bench();
+
+  runBench(benchmark, 100);
+  runBench(benchmark, 1_000);
+  runBench(benchmark, 250_000);
+
+  console.log('running');
+  await benchmark.run();
+  console.table(benchmark.table());
 }
 
 runSuite().catch((err) => console.error(err));
